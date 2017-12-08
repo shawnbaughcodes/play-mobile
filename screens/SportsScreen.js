@@ -4,7 +4,8 @@ import { View, Text } from 'react-native';
 class SportsScreen extends Component {
     render() {
         return (
-            <View>
+            <View style={styles.sportsStyle}>
+                <Text>Sports Screen</Text>
                 <Text>Sports Screen</Text>
                 <Text>Sports Screen</Text>
                 <Text>Sports Screen</Text>
@@ -16,4 +17,10 @@ class SportsScreen extends Component {
         );
     }
 }
+const styles = {
+    sportsStyle: {
+        flex: 1,
+        backgroundColor: '#333'
+    }
+};
 export default SportsScreen;

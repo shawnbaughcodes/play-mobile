@@ -4,9 +4,7 @@ import { View, Text } from 'react-native';
 class NewsScreen extends Component {
     render() {
         return (
-            <View>
-                <Text>News Screen</Text>
-                <Text>News Screen</Text>
+            <View style={styles.newsStyle}>
                 <Text>News Screen</Text>
                 <Text>News Screen</Text>
                 <Text>News Screen</Text>
@@ -19,4 +17,10 @@ class NewsScreen extends Component {
         );
     }
 }
+const styles = {
+    newsStyle: {
+        flex: 1,
+        backgroundColor: '#333'
+    }
+};
 export default NewsScreen;

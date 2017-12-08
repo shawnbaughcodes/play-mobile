@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 class TeamsScreen extends Component {
     render() {
         return (
-            <View>
+            <View style={styles.teamsStyle}>
                 <Text>Teams Screen</Text>
                 <Text>Teams Screen</Text>
                 <Text>Teams Screen</Text>
@@ -17,4 +17,10 @@ class TeamsScreen extends Component {
         );
     }
 }
+const styles = {
+    teamsStyle: {
+        flex: 1,
+        backgroundColor: '#333'
+    }
+};
 export default TeamsScreen;
