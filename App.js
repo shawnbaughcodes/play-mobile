@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import * as firebase from 'firebase';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -11,7 +14,17 @@ import NewsScreen from './screens/NewsScreen';
 import AccountScreen from './screens/AccountScreen';
 
 export default class App extends React.Component {
-
+    componentWillMount() {
+        const config = {
+            apiKey: 'AIzaSyDBjZTqjTExI7yXMjQciVnY2_eOE98UISs',
+            authDomain: 'play-1dd07.firebaseapp.com',
+            databaseURL: 'https://play-1dd07.firebaseio.com',
+            projectId: 'play-1dd07',
+            storageBucket: 'play-1dd07.appspot.com',
+            messagingSenderId: '750248400131'
+};
+firebase.initializeApp(config);
+    }
     render() {
         const RootNavigator = TabNavigator({
             welcome: { screen: WelcomeScreen },
@@ -96,14 +109,16 @@ export default class App extends React.Component {
             navigationOptions: {
                 tabBarVisible: true
             },
-            lazy: false
+            lazy: true
         }
     );
 
     return (
-        <View style={styles.container}>
-            <RootNavigator />
-        </View>
+        <Provider store={store}>
+            <View style={styles.container}>
+                <RootNavigator />
+            </View>
+        </Provider>
         );
     }
 }

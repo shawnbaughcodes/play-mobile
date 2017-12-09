@@ -1,40 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
-import { SocialIcon } from 'react-native-elements';
+import { View, Text, ScrollView, Dimensions, AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import AuthScreen from '../screens/AuthScreen';
 
-const ImagePath = '../assets/';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 class Slides extends Component {
-
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
             return (
-                <View>
-                    <SocialIcon
-                        button
-                        raised
-                        type='facebook'
-                        light
-                        iconSize={25}
-                        iconStyle={styles.iconStyle}
-                    />
-                    <SocialIcon
-                        raised
-                        button
-                        type='google-plus-official'
-                        light
-                        iconSize={25}
-                        iconStyle={styles.iconStyle}
-                    />
-                    <SocialIcon
-                        button
-                        raised
-                        type='twitter'
-                        light
-                        iconSize={25}
-                        iconStyle={styles.iconStyle}
-                    />
-                </View>
+                <AuthScreen />
             );
         }
     }
@@ -76,7 +51,7 @@ const styles = {
         textAlign: 'center'
     },
     iconStyle: {
-        marginLeft: 100,
+        paddingLeft: 100,
         marginRight: 100
     }
 };

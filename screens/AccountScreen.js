@@ -35,6 +35,18 @@ class AccountScreen extends Component {
                         style={{
                         textAlign: 'center',
                         fontSize: 30,
+                        paddingBottom: 25,
+                        paddingTop: 20
+                        }}
+                    >
+                        Upcoming Games
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text
+                        style={{
+                        textAlign: 'center',
+                        fontSize: 30,
                         paddingBottom: 25
                         }}
                     >

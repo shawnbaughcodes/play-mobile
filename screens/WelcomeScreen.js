@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
+import firebase from 'firebase';
+
 import Slides from '../components/Slides';
 
 const ImagePath = '../assets/';
@@ -15,14 +17,14 @@ const WELCOME_DATA = [
 ];
 
 class WelcomeScreen extends Component {
-
+    
     onSlidesComplete = () => {
         this.props.navigation.navigate('auth');
     }
 
     render() {
         return (
-            <Slides data={WELCOME_DATA} onComplete={this.onSlidesComplete} />
+            <Slides data={WELCOME_DATA} />
         );
     }
 }
