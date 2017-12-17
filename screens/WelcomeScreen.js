@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
 import firebase from 'firebase';
@@ -17,7 +17,17 @@ const WELCOME_DATA = [
 ];
 
 class WelcomeScreen extends Component {
-    
+    state = { tokenFB: null, tokenEM: null }
+    async componentWillMount() {
+        let tokenFB = await AsyncStorage.getItem('fb_token')
+        let tokenEM = await AsyncStorage.getItem('email_token')
+        
+        if (tokenFB || tokenEM) {
+            this.props.navigation.navigate('home');
+        } else {
+            this.setState({ tokenFB: false, tokenEM: false });
+        }
+    }
     onSlidesComplete = () => {
         this.props.navigation.navigate('auth');
     }

@@ -6,49 +6,59 @@ import {
     FormValidationMessage,
     Button
 } from 'react-native-elements';
-import axios from 'axios';
 import { View, AsyncStorage } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+const API_LINK = 'LINK STUFF'
 class AuthScreen extends Component {
     state = {
         isModalVisible: false,
-        text: '',
-        email: '',
-        password: ''
     }
+
     _showModal = () => this.setState({ isModalVisible: true })
     _hideModal = () => this.setState({ isModalVisible: false })
 
     componentDidMount() {
         AsyncStorage.removeItem('fb_token');
+        this.onAuthComplete(this.props);
     }
-    onEmailChange = (text) => {
-        this.emailChanged(text);
+    componentWillReceiveProps(nextProps) {
+        this.onAuthComplete(nextProps);
     }
-    onPasswordChange = (text) => {
-        this.passwordChanged(text);
-    }
-    handleSubmit = async () => {
-        try {
-            let response = await axios.post('https://us-central1-play-1dd07.cloudfunctions.net/createUser', {
-                email: this.state.email,
-                password: this.state.password
-            });
-            console.log(response);
-            this.onSubmitComplete();
-        } catch (e) {
-            console.log(e);
+    onAuthComplete(props) {
+        if (props.token) {
+            this.props.navigation.navigate('home');
         }
     }
+    onEmailChange = (text) => {
+        this.props.emailChanged(text);
+    }
+    onPasswordChange = (text) => {
+        this.props.passwordChanged(text);
+    }
+    onFNameChange = (text) => {
+        this.props.fNameChanged(text);
+    }
+    onLNameChange = (text) => {
+        this.props.lNameChanged(text);
+    }
+    onRegisterPress = () => {
+        const { fname, lname, email, password } = this.props;
+        this.props.registerUser({ fname, lname, email, password });
+        this._hideModal
+    }
     onSubmitComplete = () => {
-        this.setState({ email: '', password: '' });
         this._hideModal();
         this.props.navigation.navigate('home');
     }
-
+    onLoginPress = () => {
+        this._showModal();
+    }
+    onCancelPress = () => {
+        this._hideModal();
+    }
     render() {
         return (
             <View>
@@ -63,38 +73,53 @@ class AuthScreen extends Component {
                 <Icon
                     reverse
                     type='font-awesome'
-                    name='envelope'
+                    name='sign-in'
+                    size={40}
+                    iconStyle={styles.iconStyle}
+                    onPress={this._showModal}
+                />
+                <Icon
+                    reverse
+                    type='font-awesome'
+                    name='pencil'
                     size={40}
                     iconStyle={styles.iconStyle}
                     onPress={this._showModal}
                 />
                 <Modal isVisible={this.state.isModalVisible}>
-                    <View style={{ flex: 1, backgroundColor: 'grey' }}>
+                    <View style={{ flex: 1, backgroundColor: 'white' }}>
+                        <FormLabel>First Name</FormLabel>
+                        <FormInput
+                            value={this.props.firstname}
+                            placeholder="John"
+                            onChangeText={this.onFNameChange}
+                        />
+                        <FormLabel>Last Name</FormLabel>
+                        <FormInput
+                            value={this.props.lastname}
+                            placeholder="Doe"
+                            onChangeText={this.onLNameChange}
+                        />
                         <FormLabel>Email</FormLabel>
                         <FormInput
-                            value={this.state.email}
+                            value={this.props.email}
                             placeholder="example@provider.com"
-                            onChangeText={email => this.setState({ email })}
+                            onChangeText={this.onEmailChange}
                         />
-                        <FormValidationMessage>
-                            {'Please enter email'}
-                        </FormValidationMessage>
                         <FormLabel>Password</FormLabel>
                         <FormInput
-                            value={this.state.password}
+                            secureTextEntry
+                            value={this.props.password}
                             placeholder="123456+"
-                            onChangeText={password => this.setState({ password })}
+                            onChangeText={this.onPasswordChange}
                         />
-                        <FormValidationMessage>
-                            {'Please enter password'}
-                        </FormValidationMessage>
                         <Button
-                            title="Sign Up/Log In"
-                            onPress={this.handleSubmit}
+                            title="Sign Up"
+                            onPress={this.onRegisterPress}
                         />
                         <Button
                             title="Cancel"
-                            onPress={this._hideModal}
+                            onPress={this.onCancelPress}
                         />
                     </View>
                 </Modal>
@@ -117,7 +142,13 @@ const styles = {
         backgroundColor: 'white'
     }
 };
-function mapStateToProps({ auth }) {
-    return { token: auth.token };
+const mapStateToProps = ({ auth }) => {
+    return {
+        tokenFB: auth.tokenFB,
+        email: auth.email,
+        fname: auth.fname,
+        lname: auth.lname,
+        password: auth.password
+    };
 }
 export default connect(mapStateToProps, actions)(AuthScreen);
