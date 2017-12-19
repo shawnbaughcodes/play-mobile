@@ -12,16 +12,15 @@ const WELCOME_DATA = [
     { text: 'Page 1', color: '#41D3BD', image: `${ImagePath}1.png` },
     { text: 'Page 2', color: '#41D3BD', image: `${ImagePath}2.png` },
     { text: 'Page 3', color: '#41D3BD', image: `${ImagePath}3.png` },
-    { text: 'Page 4', color: '#41D3BD', image: `${ImagePath}4.png` },
-    { text: 'Login to PLAY', color: '#41D3BD', image: `${ImagePath}5.png` },
+    { text: 'Page 4', color: '#41D3BD', image: `${ImagePath}4.png` }
 ];
 
 class WelcomeScreen extends Component {
     state = { tokenFB: null, tokenEM: null }
     async componentWillMount() {
-        let tokenFB = await AsyncStorage.getItem('fb_token')
-        let tokenEM = await AsyncStorage.getItem('email_token')
-        
+        AsyncStorage.removeItem('email_token')
+        const tokenFB = await AsyncStorage.getItem('fb_token');
+        const tokenEM = await AsyncStorage.getItem('email_token');
         if (tokenFB || tokenEM) {
             this.props.navigation.navigate('home');
         } else {
@@ -34,7 +33,7 @@ class WelcomeScreen extends Component {
 
     render() {
         return (
-            <Slides data={WELCOME_DATA} />
+            <Slides data={WELCOME_DATA} onComplete={this.onSlidesComplete} />
         );
     }
 }

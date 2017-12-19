@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { connect } from 'react-redux'
+import * as actions from '../actions';
 
 class AccountScreen extends Component {
+    componentWillMount() {
+
+    }
     render() {
         return (
             <ScrollView>
@@ -73,7 +78,7 @@ const styles = {
     userHeadStyle: {
         flexDirection: 'row',
         backgroundColor: '#FFFFF2',
-        paddingTop: 10,
+        paddingTop: 35,
         paddingLeft: 15,
         paddingRight: 10,
         paddingBottom: 10,
@@ -99,4 +104,8 @@ const styles = {
         color: 'red'
     }
 };
-export default AccountScreen;
+const mapStateToProps = {
+
+}
+
+export default connect(mapStateToProps, actions)(AccountScreen);

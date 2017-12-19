@@ -8,6 +8,7 @@ import ReduxThunk from 'redux-thunk';
 import store from './store';
 
 import WelcomeScreen from './screens/WelcomeScreen';
+import AuthScreen from './screens/AuthScreen';
 import HomeScreen from './screens/HomeScreen';
 import SportsScreen from './screens/SportsScreen';
 import TeamsScreen from './screens/TeamsScreen';
@@ -19,86 +20,80 @@ export default class App extends React.Component {
 render() {
     const RootNavigator = TabNavigator({
         welcome: { screen: WelcomeScreen },
-        stack: {
-            screen: StackNavigator({
-                main: {
-                    screen: TabNavigator({
-                        home: {
-                            screen: HomeScreen,
-                            navigationOptions: () => ({
-                                tabBarIcon: ({ tintColor }) => (
-                                    <Image
-                                        source={require('./assets/icons/home.png')}
-                                        style={[styles.icon, { tintColor }]}
-                                    />
-                                )
-                            })
-                        },
-                        sports: {
-                            screen: SportsScreen,
-                            navigationOptions: () => ({
-                                tabBarIcon: ({ tintColor }) => (
-                                    <Image
-                                        source={require('./assets/icons/team.png')}
-                                        style={[styles.icon, { tintColor }]}
-                                    />
-                                )
-                            })
-                         },
-                        teams: {
-                            screen: TeamsScreen,
-                            navigationOptions: () => ({
-                                tabBarIcon: ({ tintColor }) => (
-                                    <Image
-                                        source={require('./assets/icons/tick-inside-circle.png')}
-                                        style={[styles.icon, { tintColor }]}
-                                    />
-                                )
-                            })
-                         },
-                        news: {
-                            screen: NewsScreen,
-                            navigationOptions: () => ({
-                                tabBarIcon: ({ tintColor }) => (
-                                    <Image
-                                        source={require('./assets/icons/newspaper.png')}
-                                        style={[styles.icon, { tintColor }]}
-                                    />
-                                )
-                            })
-                         },
-                        account: {
-                            screen: AccountScreen,
-                            navigationOptions: () => ({
-                                tabBarIcon: ({ tintColor }) => (
-                                    <Image
-                                        source={require('./assets/icons/avatar.png')}
-                                        style={[styles.icon, { tintColor }]}
-                                    />
-                                )
-                            })
-                         },
-                    }, {
-                        tabBarPosition: 'bottom',
-                        swipeEnabled: false,
-                        lazy: true,
-                        tabBarOptions: {
-                            activeTintColor: '#4CE0D2',
-                            showLabel: false,
-                            style: {
-                                backgroundColor: '#333'
-                            },
-                        }
+        auth: { screen: AuthScreen },
+        main: {
+            screen: TabNavigator({
+                home: {
+                    screen: HomeScreen,
+                    navigationOptions: () => ({
+                        tabBarIcon: ({ tintColor }) => (
+                            <Image
+                                source={require('./assets/icons/home.png')}
+                                style={[styles.icon, { tintColor }]}
+                            />
+                        )
                     })
-                }
+                },
+                sports: {
+                    screen: SportsScreen,
+                    navigationOptions: () => ({
+                        tabBarIcon: ({ tintColor }) => (
+                            <Image
+                                source={require('./assets/icons/team.png')}
+                                style={[styles.icon, { tintColor }]}
+                            />
+                        )
+                    })
+                 },
+                teams: {
+                    screen: TeamsScreen,
+                    navigationOptions: () => ({
+                        tabBarIcon: ({ tintColor }) => (
+                            <Image
+                                source={require('./assets/icons/tick-inside-circle.png')}
+                                style={[styles.icon, { tintColor }]}
+                            />
+                        )
+                    })
+                 },
+                news: {
+                    screen: NewsScreen,
+                    navigationOptions: () => ({
+                        tabBarIcon: ({ tintColor }) => (
+                            <Image
+                                source={require('./assets/icons/newspaper.png')}
+                                style={[styles.icon, { tintColor }]}
+                            />
+                        )
+                    })
+                 },
+                account: {
+                    screen: AccountScreen,
+                    navigationOptions: () => ({
+                        tabBarIcon: ({ tintColor }) => (
+                            <Image
+                                source={require('./assets/icons/avatar.png')}
+                                style={[styles.icon, { tintColor }]}
+                            />
+                        )
+                    })
+                 },
             }, {
-                headerMode: 'screen',
-                mode: 'card'
+                tabBarPosition: 'bottom',
+                swipeEnabled: false,
+                lazy: true,
+                tabBarOptions: {
+                    activeTintColor: '#4CE0D2',
+                    showLabel: false,
+                    style: {
+                        backgroundColor: '#333'
+                    },
+                }
             })
-        },
+        }
     }, {
         navigationOptions: {
-            tabBarVisible: true
+            tabBarVisible: false
         },
         lazy: true
     }

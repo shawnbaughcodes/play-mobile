@@ -11,7 +11,7 @@ import {
     REGISTER_USER_SUCCESS
 } from './types';
 
-const API_LINK = 'http://13.57.43.155';
+const API_LINK = 'http://52.53.165.44';
 export const facebookLogin = () => async dispatch => {
     let tokenFB = await AsyncStorage.getItem('fb_token');
     if (tokenFB) {
@@ -46,30 +46,32 @@ export const lNameChanged = (text) => {
 };
 
 export const registerUser = ({ fname, lname, email, password }) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         axios.post(`${API_LINK}/users`, {
             firstname: fname,
             lastname: lname,
             email,
             password
         })
-        .then(response => {
+        .then(async response => {
             dispatch({ type: REGISTER_USER_SUCCESS, payload: response });
+            await AsyncStorage.setItem('email_token', response.data.token);
+            await AsyncStorage.setItem('user', response.data.user._id);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(`Error ${error}`);
         });
     };
 };
 export const doEmailLogin = ({ email, password }) => {
 };
 const doFacebookLogin = async dispatch => {
-    const { tokenFB, type } = await Facebook.logInWithReadPermissionsAsync('133231130689020', {
+    const { token, type } = await Facebook.logInWithReadPermissionsAsync('133231130689020', {
         permissions: ['public_profile', 'email']
     });
     if (type === 'cancel') {
         return dispatch({ type: FACEBOOK_LOGIN_FAIL });
     }
-    await AsyncStorage.setItem('fb_token', tokenFB);
-    dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: tokenFB });
+    await AsyncStorage.setItem('fb_token', token);
+    dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };

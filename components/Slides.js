@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, AsyncStorage } from 'react-native';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import AuthScreen from '../screens/AuthScreen';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 class Slides extends Component {
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
             return (
-                <AuthScreen />
+                <Button
+                    raised
+                    title="Get Started!"
+                    buttonStyle={styles.buttonStyle}
+                    onPress={this.props.onComplete}
+                />
             );
         }
     }
@@ -50,9 +53,9 @@ const styles = {
         color: 'black',
         textAlign: 'center'
     },
-    iconStyle: {
-        paddingLeft: 100,
-        marginRight: 100
+    buttonStyle: {
+        marginTop: 15,
+        backgroundColor: '#0288D1'
     }
 };
 export default Slides;

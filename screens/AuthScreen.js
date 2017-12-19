@@ -6,30 +6,30 @@ import {
     FormValidationMessage,
     Button
 } from 'react-native-elements';
-import { View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const API_LINK = 'LINK STUFF'
+const SCREEN_WIDTH = Dimensions.get('window').width;
 class AuthScreen extends Component {
     state = {
         isModalVisible: false,
     }
-
     _showModal = () => this.setState({ isModalVisible: true })
     _hideModal = () => this.setState({ isModalVisible: false })
-
     componentDidMount() {
         AsyncStorage.removeItem('fb_token');
+        AsyncStorage.removeItem('email_token');
         this.onAuthComplete(this.props);
     }
     componentWillReceiveProps(nextProps) {
         this.onAuthComplete(nextProps);
     }
     onAuthComplete(props) {
-        if (props.token) {
-            this.props.navigation.navigate('home');
+        if (props.tokenFB || props.tokenEM) {
+            this._hideModal();
+            this.props.navigation.navigate('main');
         }
     }
     onEmailChange = (text) => {
@@ -47,11 +47,7 @@ class AuthScreen extends Component {
     onRegisterPress = () => {
         const { fname, lname, email, password } = this.props;
         this.props.registerUser({ fname, lname, email, password });
-        this._hideModal
-    }
-    onSubmitComplete = () => {
-        this._hideModal();
-        this.props.navigation.navigate('home');
+        this._hideModal;
     }
     onLoginPress = () => {
         this._showModal();
@@ -61,7 +57,7 @@ class AuthScreen extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.containerStyle}>
                 <Icon
                     reverse
                     name='facebook-official'
@@ -139,16 +135,20 @@ const styles = {
         marginRight: 100
     },
     containerStyle: {
-        backgroundColor: 'white'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SCREEN_WIDTH
     }
 };
 const mapStateToProps = ({ auth }) => {
     return {
-        tokenFB: auth.tokenFB,
+        tokenEM: auth.tokenEM,
         email: auth.email,
         fname: auth.fname,
         lname: auth.lname,
         password: auth.password
     };
 }
+
 export default connect(mapStateToProps, actions)(AuthScreen);
