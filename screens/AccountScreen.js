@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import * as actions from '../actions';
+import AccountSelection from '../components/AccountSelection'
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
 class AccountScreen extends Component {
     componentWillMount() {
-
+        this.props.getUserData();
+        console.log(this.props);
     }
     render() {
         return (
-            <ScrollView>
+            <View>
                 <View style={styles.userHeadStyle}>
                     <Avatar
                         large
@@ -19,69 +22,52 @@ class AccountScreen extends Component {
                         style={{ width: 100, height: 100 }}
                     />
                     <View style={{ marginLeft: 15 }}>
-                        <Text style={styles.userNameText}>User Name</Text>
+                        <Text style={styles.userNameText}>
+                            {this.props.fname} {this.props.lname}
+                        </Text>
                         <Text style={styles.epText}>Edit Profile</Text>
                     </View>
                 </View>
-                <TouchableOpacity>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        paddingBottom: 25,
-                        paddingTop: 20
-                        }}
-                    >
-                        Teams
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        paddingBottom: 25,
-                        paddingTop: 20
-                        }}
-                    >
-                        Upcoming Games
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        paddingBottom: 25
-                        }}
-                    >
-                        My Sports
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        paddingBottom: 25,
-                        color: 'red'
-                        }}
-                    >
-                        Sign Out
-                    </Text>
-                </TouchableOpacity>
-            </ScrollView>
+                <ScrollView style={styles.containerStyle}>
+                    <TouchableOpacity>
+                        <AccountSelection
+                            title='Messages'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <AccountSelection
+                            title='Teams'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <AccountSelection
+                            title='Upcoming Games'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <AccountSelection
+                            title='My Sports'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <AccountSelection
+                            style={{ color: 'red' }}
+                            title='Sign Out'
+                        />
+                    </TouchableOpacity>
+                </ScrollView>
+            </View>
         );
     }
 }
 const styles = {
     userHeadStyle: {
         flexDirection: 'row',
-        backgroundColor: '#FFFFF2',
+        backgroundColor: '#F3FFF4',
         paddingTop: 35,
         paddingLeft: 15,
         paddingRight: 10,
-        paddingBottom: 10,
+        paddingBottom: 10
     },
     userNameText: {
         fontWeight: 'bold',
@@ -102,10 +88,23 @@ const styles = {
     },
     lasttitleStyle: {
         color: 'red'
+    },
+    containerStyle: {
+        width: SCREEN_WIDTH,
+        height: '100%',
+        marginTop: 20
     }
 };
-const mapStateToProps = {
+const mapStateToProps = ({ user }) => {
+    if (user.user !== undefined) {
+        return {
+            fname: user.user.data.firstname,
+            lname: user.user.data.lastname,
+            email: user.user.data.email,
+        };
+    }
 
-}
+    return {};
+};
 
 export default connect(mapStateToProps, actions)(AccountScreen);

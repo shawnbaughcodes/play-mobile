@@ -6,3 +6,4 @@ npm-debug.*
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 serviceAccount.json
+api-key.js

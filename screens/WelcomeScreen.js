@@ -18,7 +18,6 @@ const WELCOME_DATA = [
 class WelcomeScreen extends Component {
     state = { tokenFB: null, tokenEM: null }
     async componentWillMount() {
-        AsyncStorage.removeItem('email_token')
         const tokenFB = await AsyncStorage.getItem('fb_token');
         const tokenEM = await AsyncStorage.getItem('email_token');
         if (tokenFB || tokenEM) {

@@ -8,3 +8,4 @@ export const FNAME_CHANGED = 'fname_changed';
 export const LNAME_CHANGED = 'lname_changed';
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
+export const USER_FETCHED = 'user_fetched';

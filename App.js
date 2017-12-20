@@ -64,7 +64,8 @@ render() {
                                 source={require('./assets/icons/newspaper.png')}
                                 style={[styles.icon, { tintColor }]}
                             />
-                        )
+                        ),
+                        title: 'News'
                     })
                  },
                 account: {
@@ -80,7 +81,8 @@ render() {
                  },
             }, {
                 tabBarPosition: 'bottom',
-                swipeEnabled: false,
+                swipeEnabled: true,
+                animationEnabled: true,
                 lazy: true,
                 tabBarOptions: {
                     activeTintColor: '#4CE0D2',
