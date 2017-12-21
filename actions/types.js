@@ -9,3 +9,4 @@ export const LNAME_CHANGED = 'lname_changed';
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
 export const USER_FETCHED = 'user_fetched';
+export const FETCH_FOOTBALL_NEWS = 'fetch_football_news';

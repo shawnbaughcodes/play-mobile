@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, View, StatusBar } from 'react-native';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
 import firebase from 'firebase';
@@ -32,7 +32,13 @@ class WelcomeScreen extends Component {
 
     render() {
         return (
-            <Slides data={WELCOME_DATA} onComplete={this.onSlidesComplete} />
+            <View>
+                <StatusBar
+                    animated
+                    hidden
+                />
+                <Slides data={WELCOME_DATA} onComplete={this.onSlidesComplete} />
+            </View>
         );
     }
 }

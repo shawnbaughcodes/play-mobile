@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import SportsOption from '../components/SportsOption';
 
 class SportsScreen extends Component {
     render() {
         return (
-            <View style={styles.sportsStyle}>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-                <Text>Sports Screen</Text>
-            </View>
+            <ScrollView style={styles.sportsStyle}>
+                <TouchableOpacity>
+                    <SportsOption
+                        sport="Football"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <SportsOption
+                        sport="BasketBall"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <SportsOption
+                        sport="Baseball"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <SportsOption
+                        sport="Tennis"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <SportsOption
+                        sport="Golf"
+                    />
+                </TouchableOpacity>
+            </ScrollView>
         );
     }
 }

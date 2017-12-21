@@ -1,9 +1,11 @@
 import React from 'react';
+import Expo from 'expo'
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
+import Icon from 'native-base'
 
 import store from './store';
 
@@ -16,7 +18,12 @@ import NewsScreen from './screens/NewsScreen';
 import AccountScreen from './screens/AccountScreen';
 
 export default class App extends React.Component {
-
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            'Roboto': require('native-base/Fonts/Roboto.ttf'),
+            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+        });
+    }
 render() {
     const RootNavigator = TabNavigator({
         welcome: { screen: WelcomeScreen },
@@ -85,10 +92,11 @@ render() {
                 animationEnabled: true,
                 lazy: true,
                 tabBarOptions: {
+                    backBehavior: 'none',
                     activeTintColor: '#4CE0D2',
-                    showLabel: false,
+                    showLabel: true,
                     style: {
-                        backgroundColor: '#333'
+                        backgroundColor: '#333',
                     },
                 }
             })

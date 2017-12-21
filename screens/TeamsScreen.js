@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, StatusBar, ScrollView } from 'react-native';
+import CreateTeamButton from '../components/CreateTeamButton';
+import TeamCard from '../components/TeamCard';
 
 class TeamsScreen extends Component {
     render() {
         return (
             <View style={styles.teamsStyle}>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
-                <Text>Teams Screen</Text>
+                <StatusBar
+                    animated
+                    hidden
+                />
+                <CreateTeamButton />
+                <ScrollView>
+                    <TeamCard
+                        teamname='Team Name'
+                        teamlead='Team Lead'
+                    />
+                    <TeamCard
+                        teamname='Team Name'
+                        teamlead='Team Lead'
+                    />
+                    <TeamCard
+                        teamname='Team Name'
+                        teamlead='Team Lead'
+                    />
+                    <TeamCard
+                        teamname='Team Name'
+                        teamlead='Team Lead'
+                    />
+                    <TeamCard
+                        teamname='Team Name'
+                        teamlead='Team Lead'
+                    />
+                </ScrollView>
             </View>
+
         );
     }
 }
