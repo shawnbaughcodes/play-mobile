@@ -83,7 +83,6 @@ class NewsScreen extends Component {
 const styles = {
     newsStyle: {
         flex: 1,
-        backgroundColor: '#333'
     },
     headerStyle: {
         backgroundColor: 'black',

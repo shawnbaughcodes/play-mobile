@@ -95,9 +95,6 @@ render() {
                     backBehavior: 'none',
                     activeTintColor: '#4CE0D2',
                     showLabel: true,
-                    style: {
-                        backgroundColor: '#333',
-                    },
                 }
             })
         }
@@ -122,7 +119,6 @@ render() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333',
     justifyContent: 'center'
     },
     icon: {

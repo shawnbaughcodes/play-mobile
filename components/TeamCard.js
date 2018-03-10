@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Image, View } from 'react-native';
 import {
     Container,
@@ -15,7 +15,7 @@ import {
     Right
 } from 'native-base';
 
-const TeamCard = () => (
+const TeamCard = (props) => (
     <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}>
         <Content style={{ marginBottom: 10 }}>
             <Card>
@@ -23,8 +23,8 @@ const TeamCard = () => (
                     <Left>
                         <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />
                         <Body>
-                            <Text>{this.props.teamname}</Text>
-                            <Text note>{this.props.teamlead}</Text>
+                            <Text>{props.teamname}</Text>
+                            <Text note>{props.teamlead}</Text>
                         </Body>
                     </Left>
                 </CardItem>
@@ -44,7 +44,7 @@ const TeamCard = () => (
                     <Right>
                         <Button transparent>
                             <Icon active name="ios-people" />
-                            <Text>{this.props.teammates} Members</Text>
+                            <Text>{props.teammates} Members</Text>
                         </Button>
                     </Right>
                 </CardItem>

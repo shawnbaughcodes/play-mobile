@@ -38,7 +38,6 @@ class SportsScreen extends Component {
 const styles = {
     sportsStyle: {
         flex: 1,
-        backgroundColor: '#333'
     }
 };
 export default SportsScreen;

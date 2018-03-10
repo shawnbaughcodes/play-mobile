@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const AccountSelection = () => (
+const AccountSelection = (props) => (
   <View style={styles.containerStyle}>
   <Text
   style={{
@@ -12,7 +12,7 @@ const AccountSelection = () => (
     color: 'white',
   }}
   >
-  {this.props.title}
+  {props.title}
   </Text>
   </View>
 );
