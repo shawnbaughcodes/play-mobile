@@ -3,6 +3,7 @@ import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { Header, Body, Title, Right, Icon } from 'native-base';
 
 import SinglePost from '../components/SinglePost';
+import HeaderComp from '../components/HeaderComp';
 
 class HomeScreen extends Component {
     state = {
@@ -13,13 +14,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Header style={{ backgroundColor: 'black' }}>
-                    <Right>
-                        <TouchableOpacity>
-                            <Icon style={{ color: 'white' }} name="ios-chatboxes-outline" />
-                        </TouchableOpacity>
-                    </Right>
-                </Header>
+                <HeaderComp />
                 <ScrollView style={styles.homeStyle}>
                     <SinglePost
                         firstname='Nah'
@@ -60,7 +55,6 @@ class HomeScreen extends Component {
 const styles = {
     homeStyle: {
         flex: 1,
-        backgroundColor: '#333'
     }
 };
 export default HomeScreen;

@@ -15,7 +15,7 @@ import {
     Right
 } from 'native-base';
 
-const SinglePost = () => (
+const SinglePost = (props) => (
     <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10, flex: 1 }}>
         <Content style={{ marginBottom: 10 }}>
             <Card>
@@ -23,14 +23,14 @@ const SinglePost = () => (
                     <Left>
                         <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />
                         <Body>
-                            <Text>{this.props.firstname} {this.props.lastname}</Text>
+                            <Text>{props.firstname} {props.lastname}</Text>
                         </Body>
                     </Left>
                 </CardItem>
                 <CardItem>
                     <Body>
                         <Text style={{ paddingBottom: 20, width: 350 }}>
-                            {this.props.post}
+                            {props.post}
                         </Text>
                         <Image
                             source={require('../assets/PlayPostHere.png')}

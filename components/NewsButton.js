@@ -4,18 +4,19 @@ import { Button } from 'native-base';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const NewsButton = () => (
+const NewsButton = (props) => (
     <TouchableOpacity>
         <View style={styles.containerStyle}>
-            <Button bordered onPress={this.props.onPress} style={styles.titleBGStyle}>
-                <Text style={styles.textStyle}>{this.props.title}</Text>
+            <Button bordered onPress={props.onPress} style={styles.titleBGStyle}>
+                <Text style={styles.textStyle}>{props.title}</Text>
             </Button>
             <View style={styles.imageStyle}>
-                {this.props.image}
+                {props.image}
             </View>
         </View>
     </TouchableOpacity>
 );
+
 const styles = {
     containerStyle: {
         flex: 3,

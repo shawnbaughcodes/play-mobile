@@ -42,7 +42,6 @@ class TeamsScreen extends Component {
 const styles = {
     teamsStyle: {
         flex: 1,
-        backgroundColor: '#333'
     }
 };
 export default TeamsScreen;

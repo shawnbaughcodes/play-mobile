@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Icon } from 'native-base';
 
-const SportsOption = () => (
+const SportsOption = (props) => (
     <View style={styles.containerStyle}>
         <View style={{ justifyContent: 'center' }}>
             <Icon active style={styles.iconStyle} name="ios-add-circle" />
-            <Text style={styles.textStyle}>{this.props.sport}</Text>
+            <Text style={styles.textStyle}>{props.sport}</Text>
         </View>
     </View>
 );
