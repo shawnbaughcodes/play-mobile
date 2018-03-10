@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-class CreateTeamButton extends Component {
-    render() {
-        return (
-            <TouchableOpacity>
-                <View style={styles.containerStyle}>
-                    <Text style={styles.textStyle}>Create Team</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-}
+const CreateTeamButton = () => (
+    <TouchableOpacity>
+        <View style={styles.containerStyle}>
+            <Text style={styles.textStyle}>Create Team</Text>
+        </View>
+    </TouchableOpacity>
+);
+
 const styles = {
     containerStyle: {
         marginLeft: 20,

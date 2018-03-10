@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-class AccountSelection extends Component {
-    render(){
-        return (
-            <View style={styles.containerStyle}>
-                <Text
-                style={{
-                    fontSize: 30,
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    color: 'white',
-                 }}
-                >
-                    {this.props.title}
-                </Text>
-            </View>
-        );
-    }
-}
+const AccountSelection = () => (
+  <View style={styles.containerStyle}>
+  <Text
+  style={{
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+  }}
+  >
+  {this.props.title}
+  </Text>
+  </View>
+);
+
 const styles = {
     containerStyle: {
         flex: 1,

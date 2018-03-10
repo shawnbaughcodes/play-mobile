@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { Icon } from 'native-base';
 
-class SportsOption extends Component {
-    render() {
-        return (
-            <View style={styles.containerStyle}>
-                <View style={{ justifyContent: 'center' }}>
-                    <Icon active style={styles.iconStyle} name="ios-add-circle" />
-                    <Text style={styles.textStyle}>{this.props.sport}</Text>
-                </View>
-            </View>
-        );
-    }
-}
+const SportsOption = () => (
+    <View style={styles.containerStyle}>
+        <View style={{ justifyContent: 'center' }}>
+            <Icon active style={styles.iconStyle} name="ios-add-circle" />
+            <Text style={styles.textStyle}>{this.props.sport}</Text>
+        </View>
+    </View>
+);
+
 const styles = {
     containerStyle: {
         justifyContent: 'center',

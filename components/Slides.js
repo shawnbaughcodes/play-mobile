@@ -17,16 +17,15 @@ class Slides extends Component {
         }
     }
     renderSlides() {
-        return this.props.data.map((slide, index) => {
-            return (
+        return this.props.data.map((slide, index) => (
                 <View
                 key={slide.text}
-                style={[styles.slideStyle, { backgroundColor: slide.color }]}>
+                style={[styles.slideStyle, { backgroundColor: slide.color }]}
+                >
                         <Text style={styles.textStyle}>{slide.text}</Text>
                         {this.renderLastSlide(index)}
                 </View>
-            );
-        });
+            ));
     }
     render() {
         return (

@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, Button } from 'native-base';
+import { Button } from 'native-base';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class NewsButton extends Component {
-    render() {
-        return (
-            <TouchableOpacity>
-                <View style={styles.containerStyle}>
-                    <Button bordered onPress={this.props.onPress} style={styles.titleBGStyle}>
-                        <Text style={styles.textStyle}>{this.props.title}</Text>
-                    </Button>
-                    <View style={styles.imageStyle}>
-                        {this.props.image}
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-}
+const NewsButton = () => (
+    <TouchableOpacity>
+        <View style={styles.containerStyle}>
+            <Button bordered onPress={this.props.onPress} style={styles.titleBGStyle}>
+                <Text style={styles.textStyle}>{this.props.title}</Text>
+            </Button>
+            <View style={styles.imageStyle}>
+                {this.props.image}
+            </View>
+        </View>
+    </TouchableOpacity>
+);
 const styles = {
     containerStyle: {
         flex: 3,
