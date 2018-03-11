@@ -5,11 +5,11 @@ import SinglePost from '../components/SinglePost';
 import HeaderComp from '../components/HeaderComp';
 
 class HomeScreen extends Component {
-    // state = {
-    //     isModalVisible: false,
-    // }
-    // _showModal = () => this.setState({ isModalVisible: true })
-    // _hideModal = () => this.setState({ isModalVisible: false })
+    state = {
+        isModalVisible: false,
+    }
+    _showModal = () => this.setState({ isModalVisible: true })
+    _hideModal = () => this.setState({ isModalVisible: false })
     render() {
         return (
             <View style={{ flex: 1 }}>

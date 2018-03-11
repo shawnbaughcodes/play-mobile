@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { View, StatusBar, ScrollView } from 'react-native';
 import CreateTeamButton from '../components/CreateTeamButton';
+import HeaderComp from '../components/HeaderComp';
 import TeamCard from '../components/TeamCard';
 
 class TeamsScreen extends Component {
     render() {
         return (
             <View style={styles.teamsStyle}>
-                <StatusBar
-                    animated
-                    hidden
-                />
+                <HeaderComp />
                 <CreateTeamButton />
                 <ScrollView>
                     <TeamCard

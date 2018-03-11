@@ -1,34 +1,34 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Icon } from 'native-base';
+import styled from 'styled-components';
+
+import { sportsOptionContainer, sportsInnerContainer } from './styles/sportsStyles';
+
+const Wrapper = styled.View`
+    ${sportsOptionContainer}
+`;
+const InnerWrapper = styled.View`
+    ${sportsInnerContainer}
+`;
 
 const SportsOption = (props) => (
-    <View style={styles.containerStyle}>
-        <View style={{ justifyContent: 'center' }}>
-            <Icon active style={styles.iconStyle} name="ios-add-circle" />
-            <Text style={styles.textStyle}>{props.sport}</Text>
-        </View>
-    </View>
+    <Wrapper>
+        <Icon active style={styles.iconStyle} name="ios-add-circle" />
+        <Text style={styles.textStyle}>{props.sport}</Text>
+    </Wrapper>
 );
 
 const styles = {
-    containerStyle: {
-        justifyContent: 'center',
-        flexDirection: 'row',
-        backgroundColor: '#A0C1D1',
-        height: 150,
-        marginLeft: 10,
-        marginRight: 10,
-        borderRadius: 10,
-        marginTop: 20
-    },
     textStyle: {
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 20,
+        color: 'white',
     },
     iconStyle: {
         textAlign: 'center',
-        fontSize: 50
+        fontSize: 40,
+        color: 'white',
     }
 };
 export default SportsOption;

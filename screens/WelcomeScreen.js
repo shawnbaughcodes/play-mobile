@@ -21,7 +21,7 @@ class WelcomeScreen extends Component {
         const tokenFB = await AsyncStorage.getItem('fb_token');
         const tokenEM = await AsyncStorage.getItem('email_token');
         if (tokenFB || tokenEM) {
-            this.props.navigation.navigate('home');
+            this.props.navigation.navigate('sports');
         } else {
             this.setState({ tokenFB: false, tokenEM: false });
         }
