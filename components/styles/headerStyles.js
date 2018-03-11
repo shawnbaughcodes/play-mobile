@@ -13,10 +13,10 @@ export const wrapper = css`
     elevation: 1;
     z-index: 2;
     flex-direction: row;
-    padding: 0% 2%;
+    padding: 0% 5%;
 `;
 
 export const headText = css`
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
 `;

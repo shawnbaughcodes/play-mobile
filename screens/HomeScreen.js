@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { Header, Body, Title, Right, Icon } from 'native-base';
+import { View, ScrollView } from 'react-native';
 
 import SinglePost from '../components/SinglePost';
 import HeaderComp from '../components/HeaderComp';
 
 class HomeScreen extends Component {
-    state = {
-        isModalVisible: false,
-    }
-    _showModal = () => this.setState({ isModalVisible: true })
-    _hideModal = () => this.setState({ isModalVisible: false })
+    // state = {
+    //     isModalVisible: false,
+    // }
+    // _showModal = () => this.setState({ isModalVisible: true })
+    // _hideModal = () => this.setState({ isModalVisible: false })
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <HeaderComp />
-                <ScrollView style={styles.homeStyle}>
+                <ScrollView style={{ flex: 1 }}>
                     <SinglePost
-                        firstname='Nah'
-                        lastname='Son'
+                        firstname='Someone'
+                        lastname='Superlongname'
                         post='This is a post to show I can pass props back to the component carrying this card.'
                     />
                     <SinglePost
@@ -52,9 +51,4 @@ class HomeScreen extends Component {
     }
 }
 
-const styles = {
-    homeStyle: {
-        flex: 1,
-    }
-};
 export default HomeScreen;
