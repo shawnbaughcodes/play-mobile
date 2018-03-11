@@ -1,43 +1,52 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
+import styled from 'styled-components';
+
 import SportsOption from '../components/SportsOption';
+import HeaderComp from '../components/HeaderComp';
+import SportsTitle from '../components/SportsTitle';
+import { sportsScrollWrapper } from '../components/styles/sportsStyles';
+
+const SportsScrollWrapper = styled.View`
+    ${sportsScrollWrapper}
+`;
 
 class SportsScreen extends Component {
     render() {
         return (
-            <ScrollView style={styles.sportsStyle}>
-                <TouchableOpacity>
-                    <SportsOption
-                        sport="Football"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <SportsOption
-                        sport="BasketBall"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <SportsOption
-                        sport="Baseball"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <SportsOption
-                        sport="Tennis"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <SportsOption
-                        sport="Golf"
-                    />
-                </TouchableOpacity>
-            </ScrollView>
+            <View style={{ flex: 1 }}>
+                <HeaderComp />
+                <SportsTitle />
+                <ScrollView>
+                    <TouchableOpacity>
+                        <SportsOption
+                            sport="Footbal"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <SportsOption
+                            sport="BasketBall"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <SportsOption
+                            sport="Baseball"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <SportsOption
+                            sport="Tennis"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <SportsOption
+                            sport="Golf"
+                        />
+                    </TouchableOpacity>
+                </ScrollView>
+            </View>
         );
     }
 }
-const styles = {
-    sportsStyle: {
-        flex: 1,
-    }
-};
+
 export default SportsScreen;
