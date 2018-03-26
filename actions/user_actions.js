@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 import { USER_FETCHED } from './types';
 
-const API_LINK = 'http://52.53.165.44';
+const API_LINK = require('../backend-key');
 
 export const getUserData = () => async (dispatch) => {
     const USER_ID = await AsyncStorage.getItem('user');

@@ -15,10 +15,13 @@ import {
     Right
 } from 'native-base';
 
+import TeamCardHeader from './TeamCardHeader';
+
 const TeamCard = (props) => (
     <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}>
         <Content style={{ marginBottom: 10 }}>
             <Card>
+                <TeamCardHeader />
                 <CardItem>
                     <Left>
                         <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />

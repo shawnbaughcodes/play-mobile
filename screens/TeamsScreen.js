@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import CreateTeamButton from '../components/CreateTeamButton';
 import HeaderComp from '../components/HeaderComp';
 import TeamCard from '../components/TeamCard';

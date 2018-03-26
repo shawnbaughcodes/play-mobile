@@ -11,7 +11,8 @@ import {
     REGISTER_USER_SUCCESS
 } from './types';
 
-const API_LINK = 'http://52.53.165.44';
+const API_LINK = require('../backend-key');
+
 export const facebookLogin = () => async dispatch => {
     let tokenFB = await AsyncStorage.getItem('fb_token');
     if (tokenFB) {
