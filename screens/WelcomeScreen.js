@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StatusBar } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
 import firebase from 'firebase';

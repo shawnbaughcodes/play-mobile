@@ -8,6 +8,8 @@ import ReduxThunk from 'redux-thunk';
 import Icon from 'native-base'
 
 import store from './store';
+const key = require('firebase-key');
+const db = require('firebase-key');
 
 import WelcomeScreen from './screens/WelcomeScreen';
 import AuthScreen from './screens/AuthScreen';
@@ -23,11 +25,19 @@ export default class App extends React.Component {
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
         });
+        firebase.initializeApp({
+            apiKey: key,
+            authDomain: "play-ef822.firebaseapp.com",
+            databaseURL: db,
+            projectId: "play-ef822",
+            storageBucket: "",
+            messagingSenderId: "641122474250"
+        })
     }
 render() {
     const RootNavigator = TabNavigator({
         welcome: { screen: WelcomeScreen },
-        auth: { screen: AuthScreen },
+        // auth: { screen: AuthScreen },
         main: {
             screen: TabNavigator({
                 home: {
@@ -100,7 +110,7 @@ render() {
         }
      }, {
         navigationOptions: {
-            tabBarVisible: false
+            tabBarVisible: true
         },
         lazy: true
     }

@@ -3,7 +3,8 @@ import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-nati
 import { Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import AccountSelection from '../components/AccountSelection'
+import AccountSelection from '../components/AccountSelection';
+import HeaderComp from '../components/HeaderComp';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 class AccountScreen extends Component {
@@ -14,6 +15,7 @@ class AccountScreen extends Component {
     render() {
         return (
             <View>
+                <HeaderComp />
                 <View style={styles.userHeadStyle}>
                     <Avatar
                         large

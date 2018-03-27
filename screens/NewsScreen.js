@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, Modal, StatusBar, Text } from 'react-native';
+import { ScrollView, Modal, Text } from 'react-native';
 import { Container, Header, Body, Title, Left, Right } from 'native-base';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
 import NewsButton from '../components/NewsButton';
+import HeaderComp from '../components/HeaderComp';
 
 class NewsScreen extends Component {
     state = {
@@ -41,17 +42,7 @@ class NewsScreen extends Component {
     render() {
         return (
             <Container style={styles.newsStyle}>
-                <StatusBar
-                    animated
-                    hidden
-                />
-                <Header style={styles.headerStyle}>
-                    <Left />
-                    <Body>
-                        <Title style={{ color: 'white' }}>News</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                <HeaderComp />
                 <ScrollView style={{ marginTop: 10 }}>
                     <NewsButton
                         title='Football'
