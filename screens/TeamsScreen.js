@@ -6,6 +6,9 @@ import TeamCard from '../components/TeamCard';
 
 class TeamsScreen extends Component {
     render() {
+        const joinTeam = () => {
+            console.log('JOIN!');
+        }
         return (
             <View style={styles.teamsStyle}>
                 <HeaderComp />
@@ -14,6 +17,7 @@ class TeamsScreen extends Component {
                     <TeamCard
                         teamname='Team Name'
                         teamlead='Team Lead'
+                        joinTeam={joinTeam}
                     />
                     <TeamCard
                         teamname='Team Name'

@@ -19,7 +19,7 @@ export const infoWrapper = css`
     flex: 2;
     height: 70px;
     flex-direction: row;
-    padding: 5% 3% 0 3%;
+    padding: 5% 3% 0% 3%;
 `;
 export const userName = css`
     font-size: 15px;

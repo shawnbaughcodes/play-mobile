@@ -1,58 +1,58 @@
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, Button, Text, Dimensions } from 'react-native';
 import {
     Container,
     Header,
     Content,
-    Card,
-    CardItem,
-    Thumbnail,
-    Text,
-    Button,
     Icon,
     Left,
     Body,
-    Right
 } from 'native-base';
 
 import TeamCardHeader from './TeamCardHeader';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 const TeamCard = (props) => (
-    <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}>
-        <Content style={{ marginBottom: 10 }}>
-            <Card>
-                <TeamCardHeader />
-                <CardItem>
-                    <Left>
-                        <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />
-                        <Body>
-                            <Text>{props.teamname}</Text>
-                            <Text note>{props.teamlead}</Text>
-                        </Body>
-                    </Left>
-                </CardItem>
-                <CardItem cardBody>
-                    <Image
-                        source={require('../assets/Team.png')}
-                        style={{ height: 200, width: null, flex: 1 }}
-                    />
-                </CardItem>
-                <CardItem>
-                    <Left>
-                        <Button transparent>
-                            <Icon active name="ios-add-circle" />
-                                <Text>Join Team </Text>
-                        </Button>
-                    </Left>
-                    <Right>
-                        <Button transparent>
-                            <Icon active name="ios-people" />
-                            <Text>{props.teammates} Members</Text>
-                        </Button>
-                    </Right>
-                </CardItem>
-            </Card>
-        </Content>
+    <View style={styles.teamCardView}>
+        <Image
+            source={require('../assets/Team.png')}
+            style={styles.teamImageStyle}
+        />
+        <Text style={styles.teamNameText}>{props.teamname}</Text>
+        <Text style={styles.buttonStyle}>Join Team</Text>
     </View>
 );
+
+styles = {
+    teamCardView: {
+        marginLeft: 10,
+        marginRight: 10,
+        height: 220,
+        marginBottom: 10,
+        marginTop: 10,
+    },
+    teamImageStyle: {
+        borderRadius: 20,
+        width: null,
+        flex: 1,
+    },
+    teamNameText: {
+        textAlign: 'center',
+        position: 'absolute',
+        top: SCREEN_HEIGHT / 10,
+        left: SCREEN_WIDTH / 4,
+        fontWeight: 'bold',
+        fontSize: 30,
+    },
+    buttonStyle: {
+        textAlign: 'center',
+        position: 'absolute',
+        top: SCREEN_HEIGHT / 5,
+        left: SCREEN_WIDTH / 3,
+        fontWeight: 'bold',
+        fontSize: 20,
+    }
+}
 export default TeamCard;
