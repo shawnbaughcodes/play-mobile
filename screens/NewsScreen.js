@@ -2,70 +2,45 @@ import React, { Component } from 'react';
 import { ScrollView, Modal, Text } from 'react-native';
 import { Container, Header, Body, Title, Left, Right } from 'native-base';
 import { connect } from 'react-redux';
+const API = require('../api-key');
 
 import * as actions from '../actions';
 
 import NewsButton from '../components/NewsButton';
 import HeaderComp from '../components/HeaderComp';
 
+const mapStateToProps = ({ news }) => {
+    return {
+        news
+    };
+};
+
 class NewsScreen extends Component {
     state = {
-        isModalVisible: false
+        isModalVisible: false,
+        articles: [],
     }
     componentWillMount() {
-        console.log(this.props);
-        console.log(this.props.news);
+        this.props.getSportsData();
     }
-    showFootballNews = () => {
-        console.log('Pressed!!!');
-        this.setState({ isModalVisible: true });
-        return (
-            <Modal
-                style={{ flex: 1, backgroundColor: 'white' }}
-                animationType='slide'
-                presentationStyle='fullScreen'
-                visible
-            >
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-                <Text>YOOOOOOOOOO</Text>
-            </Modal>
-        );
+    componentWillReceiveProps(nextProps) {
+        this.setState({ articles: nextProps.news.news.articles })
     }
+
     render() {
         return (
             <Container style={styles.newsStyle}>
                 <HeaderComp />
                 <ScrollView style={{ marginTop: 10 }}>
-                    <NewsButton
-                        title='Football'
-                        onPress={this.showFootballNews}
-                    />
-                    <NewsButton
-                        title='Basketball'
-                    />
-                    <NewsButton
-                        title='Baseball'
-                    />
-                    <NewsButton
-                        title='Soccer'
-                    />
-                    <NewsButton
-                        title='Tennis'
-                    />
-                    <NewsButton
-                        title='Volleyball'
-                    />
-                    <NewsButton
-                        title='Golf'
-                    />
+                    {this.state.articles.map((article) => (
+                        <NewsButton
+                            key={article.publishedAt}
+                            title={article.title}
+                            description={article.description}
+                            url={article.url}
+                            image={article.urlToImage}
+                        />
+                    ))}
                 </ScrollView>
             </Container>
         );
@@ -81,12 +56,4 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ news }) => {
-    if (news.news !== undefined) {
-        return {
-            news: news.news
-        };
-    }
-    return {};
-};
 export default connect(mapStateToProps, actions)(NewsScreen);

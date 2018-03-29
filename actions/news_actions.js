@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { FETCH_FOOTBALL_NEWS } from './types';
 
-const key = require('../api-key');
+const API = require('../api-key');
 
-const NEWS_EVERYTHING_ROOT_URL = 'https://newsapi.org/v2/everything?';
+const NEWS_EVERYTHING_ROOT_URL = 'https://newsapi.org/v2/top-headlines?';
+const SPORTS_SOURCE = 'sources=the-sport-bible&apiKey=';
 
-// FOOTBALL ACTION
-const FOOTBALL_SOURCE = 'sources=nfl-news&apiKey=';
-
-export const getFootBallData = () => async (dispatch) => {
+export const getSportsData = () => async (dispatch) => {
     try {
-        const { data } = await axios.get(`${NEWS_EVERYTHING_ROOT_URL}${FOOTBALL_SOURCE}${key.API_KEY}`)
+        const { data } = await axios.get(`${NEWS_EVERYTHING_ROOT_URL}${SPORTS_SOURCE}${API.key}`)
         dispatch({ type: FETCH_FOOTBALL_NEWS, payload: data });
     } catch (e) {
         console.log(e);

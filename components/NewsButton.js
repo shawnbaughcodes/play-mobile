@@ -1,32 +1,33 @@
 import React from 'react';
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'native-base';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const NewsButton = (props) => (
     <TouchableOpacity>
         <View style={styles.containerStyle}>
-            <Button bordered onPress={props.onPress} style={styles.titleBGStyle}>
-                <Text style={styles.textStyle}>{props.title}</Text>
-            </Button>
-            <View style={styles.imageStyle}>
-                {props.image}
-            </View>
+            <Image style={styles.imageStyle} />
+            <Text>{props.title}</Text>
+            <Text>_______________________________________</Text>
+            <Text>Press to Read More</Text>
         </View>
     </TouchableOpacity>
 );
 
 const styles = {
     containerStyle: {
-        flex: 3,
-        flexDirection: 'row',
-        height: 140,
+        flex: 1,
+        height: SCREEN_HEIGHT / 3,
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: '#DADFF7',
+        backgroundColor: '#333',
         borderRadius: 10,
-        marginTop: 15
+        marginTop: 15,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1,
     },
     textStyle: {
         fontSize: 20,
@@ -34,20 +35,10 @@ const styles = {
         textAlign: 'center',
         color: '#232C33'
     },
-    titleBGStyle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        borderTopRightRadius: 25,
-        borderBottomRightRadius: 25,
-        backgroundColor: '#A0C1D1',
-        width: 40,
-        borderColor: '#B5B2C2',
-        borderWidth: 0.7
-    },
     imageStyle: {
-        flex: 2,
-        flexDirection: 'column',
+        // width: SCREEN_WIDTH,
+        height: 200,
+        width: '100%',
     }
 };
 export default NewsButton;
