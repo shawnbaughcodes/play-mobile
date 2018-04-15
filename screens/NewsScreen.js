@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Modal, Text } from 'react-native';
+import { ScrollView, Modal, Text, WebView } from 'react-native';
 import { Container, Header, Body, Title, Left, Right } from 'native-base';
 import { connect } from 'react-redux';
 const API = require('../api-key');
@@ -15,6 +15,8 @@ const mapStateToProps = ({ news }) => {
     };
 };
 
+
+
 class NewsScreen extends Component {
     state = {
         isModalVisible: false,
@@ -28,6 +30,7 @@ class NewsScreen extends Component {
     }
 
     render() {
+
         return (
             <Container style={styles.newsStyle}>
                 <HeaderComp />
@@ -37,8 +40,8 @@ class NewsScreen extends Component {
                             key={article.publishedAt}
                             title={article.title}
                             description={article.description}
-                            url={article.url}
                             image={article.urlToImage}
+                            url={article.url}
                         />
                     ))}
                 </ScrollView>
