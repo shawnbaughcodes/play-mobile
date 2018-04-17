@@ -14,12 +14,10 @@ const UserName = styled.Text`
 
 const CardUserInfo = (props) => (
     <InfoWrapper>
-        <Left>
-            <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />
-            <UserName>
+        <Thumbnail source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }} />
+        <UserName>
             {props.firstname} {props.lastname}
-            </UserName>
-        </Left>
+        </UserName>
     </InfoWrapper>
 );
 

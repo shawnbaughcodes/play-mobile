@@ -27,7 +27,6 @@ const NewsButton = (props) => (
 const styles = {
     containerStyle: {
         flex: 1,
-        // height: SCREEN_HEIGHT / 3,
         marginLeft: 10,
         marginRight: 10,
         borderRadius: 10,

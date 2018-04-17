@@ -18,17 +18,16 @@ class AccountScreen extends Component {
                 <HeaderComp />
                 <View style={styles.userHeadStyle}>
                     <Avatar
-                        large
+                        xlarge
                         rounded
                         source={{ uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg' }}
                         style={{ width: 100, height: 100 }}
                     />
-                    <View style={{ marginLeft: 15 }}>
-                        <Text style={styles.userNameText}>
-                            {this.props.fname} {this.props.lname}
-                        </Text>
-                        <Text style={styles.epText}>Edit Profile</Text>
-                    </View>
+                </View>
+                <View style={styles.infoStyles}>
+                    <Text style={styles.nameStyles}>firstName lastName</Text>
+                    <Text style={styles.hometownStyles}>Hometown</Text>
+                    <Text style={styles.headlineStyles}>Headline</Text>
                 </View>
                 <ScrollView style={styles.containerStyle}>
                     <TouchableOpacity>
@@ -65,28 +64,28 @@ class AccountScreen extends Component {
 const styles = {
     userHeadStyle: {
         flexDirection: 'row',
-        backgroundColor: '#F3FFF4',
-        paddingTop: 35,
-        paddingLeft: 15,
-        paddingRight: 10,
-        paddingBottom: 10
+        justifyContent: 'center',
+        paddingTop: 25,
+        paddingBottom: 25,
     },
-    userNameText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        paddingLeft: 10,
-        paddingTop: 5
+    infoStyles: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
     },
-    epText: {
-        marginLeft: 10,
-        marginTop: 5,
-        paddingTop: 3,
-        paddingBottom: 3,
-        backgroundColor: 'white',
-        color: '#333',
+    nameStyles: {
         textAlign: 'center',
-        borderRadius: 10,
-        fontSize: 20
+        fontSize: 25,
+    },
+    hometownStyles: {
+        textAlign: 'center',
+        fontSize: 13,
+        color: 'grey',
+    },
+    headlineStyles: {
+        textAlign: 'center',
+        fontSize: 15,
     },
     lasttitleStyle: {
         color: 'red'
@@ -94,7 +93,7 @@ const styles = {
     containerStyle: {
         width: SCREEN_WIDTH,
         height: '100%',
-        marginTop: 20
+        marginTop: 20,
     }
 };
 const mapStateToProps = ({ user }) => {

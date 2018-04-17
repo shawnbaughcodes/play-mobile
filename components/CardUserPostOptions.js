@@ -17,7 +17,7 @@ const CardUserPostOptions = () => (
             <TouchableOpacity>
                 <Button>
                     <Icon active name="ios-thumbs-up" />
-                    <Text>Like</Text>
+                    {/* <Text>Like</Text> */}
                 </Button>
             </TouchableOpacity>
         </Left>
@@ -25,7 +25,7 @@ const CardUserPostOptions = () => (
             <TouchableOpacity>
                 <Button>
                     <Icon active name="ios-text" />
-                    <Text>Comment</Text>
+                    {/* <Text>Comment</Text> */}
                 </Button>
             </TouchableOpacity>
         </Body>
@@ -33,7 +33,7 @@ const CardUserPostOptions = () => (
             <TouchableOpacity>
                 <Button>
                     <Icon active name="ios-share-alt" />
-                    <Text>Share</Text>
+                    {/* <Text>Share</Text> */}
                 </Button>
             </TouchableOpacity>
         </Right>

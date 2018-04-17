@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Dimensions } from 'react-native';
 
 import SinglePost from '../components/SinglePost';
 import HeaderComp from '../components/HeaderComp';
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class HomeScreen extends Component {
     state = {

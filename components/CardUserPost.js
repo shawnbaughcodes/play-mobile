@@ -17,13 +17,13 @@ const Text = styled.Text`
 const CardUserPost = (props) => (
     <Wrapper>
         <Body>
-            <Text style={{ paddingBottom: 20, width: 350 }}>
-                {props.post}
-            </Text>
             <Image
                 source={require('../assets/PlayPostHere.png')}
                 style={{ height: 200, width: '100%', flex: 1 }}
             />
+            <Text style={{ paddingTop: 10, paddingBottom: 10, width: 350 }}>
+                {props.post}
+            </Text>
         </Body>
     </Wrapper>
 );

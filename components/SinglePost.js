@@ -11,7 +11,7 @@ const Wrapper = styled.View`
     ${wrapper}
 `;
 const SinglePost = (props) => (
-    <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10, flex: 1 }}>
+    <View style={{ marginTop: 20, flex: 1 }}>
         <Wrapper>
             <CardUserInfo
                 firstname={props.firstname}
