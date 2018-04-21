@@ -16,31 +16,50 @@ const INITIAL_STATE = {
     password: '',
     fname: '',
     lname: '',
-    user: ''
+    user: '',
+    userIsRegistered: false
 };
 
-export default (state = INITIAL_STATE, action) => {
+export default(state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FNAME_CHANGED:
-            return { ...state, fname: action.payload };
+            return {
+                ...state,
+                fname: action.payload
+            };
         case LNAME_CHANGED:
-            return { ...state, lname: action.payload };
+            return {
+                ...state,
+                lname: action.payload
+            };
         case EMAIL_CHANGED:
-            return { ...state, email: action.payload };
+            return {
+                ...state,
+                email: action.payload
+            };
         case PASSWORD_CHANGED:
-            return { ...state, password: action.payload };
-        case FACEBOOK_LOGIN_SUCCESS:
-            return { ...state, token: action.payload };
-        case FACEBOOK_LOGIN_FAIL:
-            return { token: null };
+            return {
+                ...state,
+                password: action.payload
+            };
         case REGISTER_USER_SUCCESS:
-            return { ...state, user: action.payload.data.user, tokenEM: action.payload.data.token };
+            return {
+                ...state,
+                user: action.payload,
+                userIsRegistered: true
+            };
         case REGISTER_USER_FAIL:
-            return { token: null };
+            return {
+                ...state,
+                ...INITIAL_STATE
+            };
         case LOGIN_USER_SUCCESS:
-            return { ...state, user: action.payload };
+            return {
+                ...state,
+                user: action.payload
+            };
         case LOGIN_USER_FAIL:
-            return { token: null };
+            return {token: null};
         default:
             return state;
     }

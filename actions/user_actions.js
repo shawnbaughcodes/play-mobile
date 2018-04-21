@@ -1,16 +1,27 @@
 import { AsyncStorage } from 'react-native';
-import axios from 'axios';
-import { USER_FETCHED } from './types';
+import firebase from 'firebase';
+import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL } from './types';
 
-const API_LINK = require('../backend-key');
-
-export const getUserData = () => async (dispatch) => {
-    const USER_ID = await AsyncStorage.getItem('user');
-    axios.get(`${API_LINK}/users/${USER_ID}`)
-        .then(response => {
-            dispatch({ type: USER_FETCHED, payload: response });
-        })
-        .catch((error) => {
-            console.log(`Error ${error}`);
-        });
+export const getUserData = (dispatch) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}`)
+            .on('value', snapshot => {
+                dispatch({ type: USER_FETCH_SUCCESS, payload: snapshot.val() })
+            })
+    }
 };
+
+export const updateUserData = ({ fName, lName, sports, teams }) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`users/${currentUser.uid}`)
+            .set({ fName, lName, sports, teams })
+            .then(() => {
+                dispatch({ type: UPDATE_USER_INFO_SUCCESS })
+            })
+            .catch(() => {
+                dispatch({ type: UPDATE_USER_INFO_FAIL })
+            })
+    }
+}
