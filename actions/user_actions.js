@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
-import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL } from './types';
+import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL, GET_USER_SPORTS_SUCCESS } from './types';
 
 export const getUserData = (dispatch) => {
     const { currentUser } = firebase.auth();
@@ -12,16 +12,23 @@ export const getUserData = (dispatch) => {
     }
 };
 
-export const updateUserData = ({ fName, lName, sports, teams }) => {
+export const addSportsData = (sport) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`users/${currentUser.uid}`)
-            .set({ fName, lName, sports, teams })
+        firebase.database().ref(`users/${currentUser.uid}/sports/`)
+            .push(sport)
             .then(() => {
                 dispatch({ type: UPDATE_USER_INFO_SUCCESS })
             })
-            .catch(() => {
-                dispatch({ type: UPDATE_USER_INFO_FAIL })
+    }
+}
+
+export const getUserSports = () => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/sports`)
+            .on('value', snapshot => {
+                dispatch({ type: GET_USER_SPORTS_SUCCESS, payload: snapshot.val() })
             })
     }
 }

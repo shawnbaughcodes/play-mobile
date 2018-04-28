@@ -9,13 +9,12 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const UPDATE_USER_INFO_SUCCESS = 'update_user_info_success';
 export const UPDATE_USER_INFO_FAIL = 'update_user_info_fail';
 export const GET_ALL_SPORTS_SUCCESS = 'get_all_sports_success';
-export const GET_ALL_SPORTS_FAIL = 'get_all_sports_fail';
 export const GET_ALL_TEAMS_SUCCESS = 'get_all_teams_success';
-export const GET_ALL_TEAMS_FAIL = 'get_all_teams_fail';
 export const CREATE_TEAM_SUCCESS = 'create_team_success';
 export const CREATE_TEAM_FAIL = 'create_team_fail';
 export const UPDATE_TEAM_SUCCESS = 'update_team_success';
 export const UPDATE_TEAM_FAIL = 'update_team_fail';
+export const GET_USER_SPORTS_SUCCESS = 'get_user_sports_success';
 
 //FORM CHANGES
 export const FNAME_CHANGED = 'fname_changed';

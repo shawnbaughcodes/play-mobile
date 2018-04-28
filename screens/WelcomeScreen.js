@@ -9,22 +9,26 @@ import Slide from '../components/Slides';
 const ImagePath = '../assets/';
 
 const WELCOME_DATA = [
-    { text: 'Page 1', color: '#41D3BD', image: `${ImagePath}1.png` },
-    { text: 'Page 2', color: '#41D3BD', image: `${ImagePath}2.png` },
-    { text: 'Page 3', color: '#41D3BD', image: `${ImagePath}3.png` },
+    // { text: 'Page 1', color: '#41D3BD', image: `${ImagePath}1.png` },
+    // { text: 'Page 2', color: '#41D3BD', image: `${ImagePath}2.png` },
+    // { text: 'Page 3', color: '#41D3BD', image: `${ImagePath}3.png` },
     { text: 'Page 4', color: '#41D3BD', image: `${ImagePath}4.png` }
 ];
 
 class WelcomeScreen extends Component {
-    state = { tokenFB: null, tokenEM: null }
+    state = { user_id: null }
     async componentWillMount() {
-        const tokenFB = await AsyncStorage.getItem('fb_token');
-        const tokenEM = await AsyncStorage.getItem('email_token');
-        if (tokenFB || tokenEM) {
+        const user_id = AsyncStorage.getItem('user_id');
+        const { currentUser } = firebase.auth();
+
+        if (user_id === this.state.user_id) {
             this.props.navigation.navigate('home');
+            this.setState({ user_id: currentUser.uid })
         } else {
-            this.setState({ tokenFB: false, tokenEM: false });
+            this.setState({ user_id: null });
         }
+        console.log(this.state.user_id);
+
     }
     onSlidesComplete = () => {
         this.props.navigation.navigate('auth');

@@ -13,14 +13,14 @@ const UserSportsText = styled.Text`
     ${userSportsTexts}
 `;
 
-const SportsTitle = () => (
+const SportsTitle = (props) => (
     <Wrapper>
         <SportsTitleText>Pick Your Sports</SportsTitleText>
         <TouchableOpacity>
-            <UserSportsText>Sports: 3</UserSportsText>
+            <UserSportsText>My Sports: {props.sports.length}</UserSportsText>
         </TouchableOpacity>
         <TouchableOpacity>
-            <UserSportsText>Teams: 6</UserSportsText>
+            <UserSportsText>My Teams: 6</UserSportsText>
         </TouchableOpacity>
     </Wrapper>
 );

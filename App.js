@@ -1,14 +1,14 @@
 import React from 'react';
 import Expo from 'expo'
-import {StyleSheet, View, Text, Image} from 'react-native';
-import {TabNavigator, StackNavigator} from 'react-navigation';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import Icon from 'native-base'
 
 import store from './store';
-const {key, db} = require('./firebase-key');
+const { key, db, bucket, id, domain, messaging } = require('./firebase-key');
 
 import WelcomeScreen from './screens/WelcomeScreen';
 import AuthScreen from './screens/AuthScreen';
@@ -20,21 +20,18 @@ import AccountScreen from './screens/AccountScreen';
 
 export default class App extends React.Component {
   async componentWillMount() {
-    await Expo
-      .Font
-      .loadAsync({'Roboto': require('native-base/Fonts/Roboto.ttf'), 'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')});
-    firebase.initializeApp({
+    const config = firebase.initializeApp({
       apiKey: key,
-      authDomain: "play-ef822.firebaseapp.com",
+      authDomain: domain,
       databaseURL: db,
-      projectId: "play-ef822",
-      storageBucket: "",
-      messagingSenderId: "641122474250"
+      projectId: id,
+      storageBucket: bucket,
+      messagingSenderId: messaging,
     })
   }
   render() {
     const RootNavigator = TabNavigator({
-      // welcome: { screen: WelcomeScreen },
+      welcome: { screen: WelcomeScreen },
       auth: {
         screen: AuthScreen
       },
@@ -43,77 +40,77 @@ export default class App extends React.Component {
           home: {
             screen: HomeScreen,
             navigationOptions: () => ({
-              tabBarIcon: ({tintColor}) => (<Image
+              tabBarIcon: ({ tintColor }) => (<Image
                 source={require('./assets/icons/home.png')}
                 style={[styles.icon, {
                   tintColor
-                }]}/>)
+                }]} />)
             })
           },
           sports: {
             screen: SportsScreen,
             navigationOptions: () => ({
-              tabBarIcon: ({tintColor}) => (<Image
+              tabBarIcon: ({ tintColor }) => (<Image
                 source={require('./assets/icons/team.png')}
                 style={[styles.icon, {
                   tintColor
-                }]}/>)
+                }]} />)
             })
           },
           teams: {
             screen: TeamsScreen,
             navigationOptions: () => ({
-              tabBarIcon: ({tintColor}) => (<Image
+              tabBarIcon: ({ tintColor }) => (<Image
                 source={require('./assets/icons/tick-inside-circle.png')}
                 style={[styles.icon, {
                   tintColor
-                }]}/>)
+                }]} />)
             })
           },
           news: {
             screen: NewsScreen,
             navigationOptions: () => ({
-              tabBarIcon: ({tintColor}) => (<Image
+              tabBarIcon: ({ tintColor }) => (<Image
                 source={require('./assets/icons/newspaper.png')}
                 style={[styles.icon, {
                   tintColor
-                }]}/>),
+                }]} />),
               title: 'News'
             })
           },
           account: {
             screen: AccountScreen,
             navigationOptions: () => ({
-              tabBarIcon: ({tintColor}) => (<Image
+              tabBarIcon: ({ tintColor }) => (<Image
                 source={require('./assets/icons/avatar.png')}
                 style={[styles.icon, {
                   tintColor
-                }]}/>)
+                }]} />)
             })
           }
         }, {
-          tabBarPosition: 'bottom',
-          swipeEnabled: true,
-          animationEnabled: true,
-          lazy: true,
-          tabBarOptions: {
-            backBehavior: 'none',
-            activeTintColor: '#4CE0D2',
-            showLabel: true
-          }
-        })
+            tabBarPosition: 'bottom',
+            swipeEnabled: true,
+            animationEnabled: true,
+            lazy: true,
+            tabBarOptions: {
+              backBehavior: 'none',
+              activeTintColor: '#4CE0D2',
+              showLabel: true
+            }
+          })
       }
     }, {
-      navigationOptions: {
-        tabBarVisible: false
-      },
-      lazy: true
-    });
+        navigationOptions: {
+          tabBarVisible: false
+        },
+        lazy: true
+      });
 
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <RootNavigator/>
+          <RootNavigator />
         </View>
       </Provider>
     );

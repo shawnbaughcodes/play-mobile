@@ -16,11 +16,11 @@ const INITIAL_STATE = {
     password: '',
     fname: '',
     lname: '',
-    user: '',
+    user: {},
     userIsRegistered: false
 };
 
-export default(state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FNAME_CHANGED:
             return {
@@ -56,10 +56,11 @@ export default(state = INITIAL_STATE, action) => {
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                userIsRegistered: true,
             };
         case LOGIN_USER_FAIL:
-            return {token: null};
+            return { ...state, ...INITIAL_STATE, error: action.payload };
         default:
             return state;
     }
