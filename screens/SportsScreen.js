@@ -21,11 +21,8 @@ class SportsScreen extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-
         this.setState({ sports: nextProps.sports })
-        this.setState({ userSports: this.nextProps.userSports })
-
+        this.setState({ userSports: nextProps.user.userSports })
     }
 
     onUpdateSportsData = (sport) => {
@@ -33,13 +30,12 @@ class SportsScreen extends Component {
     }
 
     render() {
-        console.log(this.props.user);
 
         const { sports, userSports } = this.state;
         return (
             <View style={{ flex: 1 }}>
                 <HeaderComp />
-                <SportsTitle sports={sports} />
+                <SportsTitle sports={userSports !== null && userSports} />
                 <ScrollView>
                     {sports === [] ? (
                         <TouchableOpacity key="TouchSportsOption">
@@ -51,10 +47,10 @@ class SportsScreen extends Component {
                     ) : (
                             sports.map((sport) => (
                                 <TouchableOpacity key={sport} onPress={() => this.onUpdateSportsData(sport)}>
-                                    <SportsOption
+                                    {userSports.contains(sport) && <SportsOption
                                         key={sport}
                                         sport={sport}
-                                    />
+                                    />}
                                 </TouchableOpacity>
                             ))
                         )}
@@ -65,14 +61,9 @@ class SportsScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
-
     return {
         sports: state.sports,
-        user: {
-            userSports: state.user.userSports,
-            teams: []
-        }
+        user: state.user,
     };
 }
 

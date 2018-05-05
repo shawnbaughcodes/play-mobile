@@ -1,12 +1,15 @@
 import {
     USER_FETCHED,
     GET_USER_SPORTS_SUCCESS,
+    GET_USER_FRIENDS_SUCCESS,
 } from '../actions/types';
 
 const INITIAL_STATE = {
     first_name: "",
     last_name: "",
     userSports: [],
+    friends: [],
+    posts: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,8 +18,15 @@ export default (state = INITIAL_STATE, action) => {
             return { user: action.payload };
 
         case GET_USER_SPORTS_SUCCESS:
-            state.userSports.push(action.payload);
-            return { ...state };
+            return {
+                ...state,
+                userSports: action.payload
+            };
+        case GET_USER_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                friends: []
+            }
 
         default:
             return state;

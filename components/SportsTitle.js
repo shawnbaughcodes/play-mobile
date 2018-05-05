@@ -13,16 +13,21 @@ const UserSportsText = styled.Text`
     ${userSportsTexts}
 `;
 
-const SportsTitle = (props) => (
-    <Wrapper>
-        <SportsTitleText>Pick Your Sports</SportsTitleText>
-        <TouchableOpacity>
-            <UserSportsText>My Sports: {props.sports.length}</UserSportsText>
-        </TouchableOpacity>
-        <TouchableOpacity>
-            <UserSportsText>My Teams: 6</UserSportsText>
-        </TouchableOpacity>
-    </Wrapper>
-);
+const SportsTitle = (props) => {
+    const userSportsCount = Object.keys(props.sports).length;
+
+    return (
+        <Wrapper>
+            <SportsTitleText>Pick Your Sports</SportsTitleText>
+            <TouchableOpacity>
+                <UserSportsText>My Sports: {userSportsCount}</UserSportsText>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <UserSportsText>My Teams: 6</UserSportsText>
+            </TouchableOpacity>
+        </Wrapper>
+    );
+
+}
 
 export default SportsTitle;

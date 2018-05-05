@@ -15,6 +15,7 @@ export const CREATE_TEAM_FAIL = 'create_team_fail';
 export const UPDATE_TEAM_SUCCESS = 'update_team_success';
 export const UPDATE_TEAM_FAIL = 'update_team_fail';
 export const GET_USER_SPORTS_SUCCESS = 'get_user_sports_success';
+export const GET_USER_FRIENDS_SUCCESS = 'get_user_friends_success';
 
 //FORM CHANGES
 export const FNAME_CHANGED = 'fname_changed';

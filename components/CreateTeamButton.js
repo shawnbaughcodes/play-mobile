@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-const CreateTeamButton = () => (
-    <TouchableOpacity>
+const CreateTeamButton = (props) => (
+    <TouchableOpacity onPress={props.showModal}>
         <View style={styles.containerStyle}>
             <Text style={styles.textStyle}>Create Team</Text>
         </View>

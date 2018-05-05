@@ -61,10 +61,10 @@ class AuthScreen extends Component {
   }
 
   onRegisterPress = () => {
-    const { email, password } = this.props;
+    const { fname, lname, email, password } = this.props;
     this
       .props
-      .registerUser({ email, password });
+      .registerUser({ fname, lname, email, password });
     this.onAuthComplete(this.props)
   }
 
@@ -76,6 +76,54 @@ class AuthScreen extends Component {
 
   onCancelPress = () => {
     this._hideModal();
+  }
+
+  renderFormContent = () => {
+    let content;
+    if (this.state.login) {
+      content = (
+        <View>
+          <FormLabel>Email</FormLabel>
+          <FormInput
+            value={this.props.email}
+            placeholder="example@provider.com"
+            onChangeText={this.onEmailChange} />
+          <FormLabel>Password</FormLabel>
+          <FormInput
+            secureTextEntry
+            value={this.props.password}
+            placeholder="123456+"
+            onChangeText={this.onPasswordChange} />
+        </View>
+      )
+    } else {
+      content = (
+        <View>
+          <FormLabel>First Name</FormLabel>
+          <FormInput
+            value={this.props.fname}
+            placeholder="Ivan"
+            onChangeText={this.onFNameChange} />
+          <FormLabel>Last Name</FormLabel>
+          <FormInput
+            value={this.props.lname}
+            placeholder="Blimans"
+            onChangeText={this.onLNameChange} />
+          <FormLabel>Email</FormLabel>
+          <FormInput
+            value={this.props.email}
+            placeholder="example@provider.com"
+            onChangeText={this.onEmailChange} />
+          <FormLabel>Password</FormLabel>
+          <FormInput
+            secureTextEntry
+            value={this.props.password}
+            placeholder="123456+"
+            onChangeText={this.onPasswordChange} />
+        </View>
+      )
+    }
+    return content;
   }
 
   renderButton = () => {
@@ -129,17 +177,8 @@ class AuthScreen extends Component {
               paddingTop: 100,
               margin: 0
             }}>
-            <FormLabel>Email</FormLabel>
-            <FormInput
-              value={this.props.email}
-              placeholder="example@provider.com"
-              onChangeText={this.onEmailChange} />
-            <FormLabel>Password</FormLabel>
-            <FormInput
-              secureTextEntry
-              value={this.props.password}
-              placeholder="123456+"
-              onChangeText={this.onPasswordChange} />
+
+            {this.renderFormContent()}
             {this.renderButton()}
             <Button title="Cancel" onPress={this.onCancelPress} />
           </View>

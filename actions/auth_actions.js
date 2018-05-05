@@ -29,29 +29,16 @@ export const lNameChanged = (text) => {
 };
 
 // REGISTER
-export const registerUser = ({ email, password }) => {
+export const registerUser = ({ fname, lname, email, password }) => {
+  const userInfo = { fname, lname }
   return async (dispatch) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(async response => registerUserSuccess(dispatch, response))
+      .then(async response => registerUserSuccess(dispatch, response, userInfo))
       .catch((error) => registerUserFail(dispatch, error));
   };
 };
-
-export const registerUserInfo = ({ fName, lName, sports, teams }) => {
-  const { currentUser } = firebase.auth();
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser}`)
-      .push({ fname, lname, sports, teams })
-      .then(() => {
-        dispatch({ type: UPDATE_USER_INFO_SUCCESS })
-      })
-      .catch((err) => {
-        dispatch({ type: UPDATE_USER_INFO_FAIL })
-      })
-  }
-}
 
 // LOGIN
 export const doEmailLogin = ({ email, password }) => {
@@ -63,9 +50,13 @@ export const doEmailLogin = ({ email, password }) => {
 };
 
 // LOCAL FUNCTIONS
-const registerUserSuccess = async (dispatch, user) => {
+const registerUserSuccess = async (dispatch, user, userInfo) => {
+  const { currentUser } = firebase.auth();
+  const { fname, lname } = userInfo;
+
+  firebase.database().ref(`users/${currentUser.uid}/`).set({ fName: fname, lName: lname, })
+  await AsyncStorage.setItem('user_id', user.uid);
   dispatch({ type: REGISTER_USER_SUCCESS, payload: user })
-  await AsyncStorage.setItem(user_id, user.uid);
 }
 
 const registerUserFail = (dispatch, error) => {
@@ -73,8 +64,8 @@ const registerUserFail = (dispatch, error) => {
 }
 
 const loginUserSuccess = (dispatch, user) => {
+  AsyncStorage.setItem('user_id', user.uid);
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-  AsyncStorage.setItem(user_id, user.uid);
 }
 
 const loginUserFail = (dispatch, error) => {

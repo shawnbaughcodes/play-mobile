@@ -16,18 +16,14 @@ const WELCOME_DATA = [
 ];
 
 class WelcomeScreen extends Component {
-    state = { user_id: null }
     async componentWillMount() {
-        const user_id = AsyncStorage.getItem('user_id');
-        const { currentUser } = firebase.auth();
+        const user_id = await AsyncStorage.getItem('user_id');
 
-        if (user_id === this.state.user_id) {
+        if (user_id) {
             this.props.navigation.navigate('home');
-            this.setState({ user_id: currentUser.uid })
         } else {
-            this.setState({ user_id: null });
+            AsyncStorage.removeItem('user_id')
         }
-        console.log(this.state.user_id);
 
     }
     onSlidesComplete = () => {

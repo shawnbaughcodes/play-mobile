@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
-import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL, GET_USER_SPORTS_SUCCESS } from './types';
+import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL, GET_USER_SPORTS_SUCCESS, GET_USER_FRIENDS_SUCCESS } from './types';
 
 export const getUserData = (dispatch) => {
     const { currentUser } = firebase.auth();
@@ -16,7 +16,7 @@ export const addSportsData = (sport) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`users/${currentUser.uid}/sports/`)
-            .push(sport)
+            .push(`${sport}`)
             .then(() => {
                 dispatch({ type: UPDATE_USER_INFO_SUCCESS })
             })
@@ -29,6 +29,17 @@ export const getUserSports = () => {
         firebase.database().ref(`/users/${currentUser.uid}/sports`)
             .on('value', snapshot => {
                 dispatch({ type: GET_USER_SPORTS_SUCCESS, payload: snapshot.val() })
+            })
+    }
+}
+
+export const getUserFriends = () => {
+    const { currentUser } = firebase.auth();
+    return async (dispatch) => {
+        const storedCurrentUser = await AsyncStorage.getItem('user_id');
+        firebase.database().ref(`/users/${storedCurrentUser}/friends`)
+            .on('value', snapshot => {
+                dispatch({ type: GET_USER_FRIENDS_SUCCESS, payload: snapshot.val() })
             })
     }
 }

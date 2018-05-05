@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, Button, Text, Dimensions } from 'react-native';
+import { Image, View, Button, Text, Dimensions, TouchableOpacity } from 'react-native';
 import {
     Container,
     Header,
@@ -21,7 +21,7 @@ const TeamCard = (props) => (
             style={styles.teamImageStyle}
         />
         <Text style={styles.teamNameText}>{props.teamname}</Text>
-        <Text style={styles.buttonStyle}>Join Team</Text>
+        <TouchableOpacity onPress={props.joinTeam}><Text style={styles.buttonStyle}>Join Team</Text></TouchableOpacity>
     </View>
 );
 
@@ -47,7 +47,7 @@ styles = {
         fontSize: 30,
     },
     buttonStyle: {
-        textAlign: 'center',
+        alignItems: 'center',
         position: 'absolute',
         top: SCREEN_HEIGHT / 5,
         left: SCREEN_WIDTH / 3,
