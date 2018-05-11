@@ -1,40 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, Modal, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Modal } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class AnyModal extends Component {
     state = {
-        modalVisible: false,
+        isModalVisible: false,
     };
-
-    setModalVisible(visible) {
-        console.log('HIT!');
-        this.setState({ modalVisible: visible })
+    toggleModal() {
+        this.props.isVisible = !isVisible;
     }
-
     render() {
+        const { children, isVisible } = this.props;
         return (
-            <View style={{ marginTop: 22 }}>
-                <Modal animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {
-                        alert('Modal has been closed.');
-                    }}
-                >
-                    <View style={{ marginTop: 22 }}>
-                        <View>
-                            <Text>Hello World!</Text>
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}
-                            >
-                                <Text>Hide Modal</Text>
-                            </TouchableHighlight>
-                        </View>
+            <View>
+                <Modal isVisible={isVisible} animationType="slide" onRequestClose={() => { }}>
+                    <View>
+                        {children}
                     </View>
-                </Modal >
-            </View>
+                </Modal>
+            </View >
         );
     }
 }

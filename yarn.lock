@@ -6420,14 +6420,15 @@ react-native-easy-grid@0.1.17:
   dependencies:
     lodash "^4.11.1"
 
-react-native-elements@^0.18.4:
-  version "0.18.5"
-  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.18.5.tgz#9d9a584395fea63f8cad7904fb21c1eac7cc63cf"
+react-native-elements@^1.5.1:
+  version "1.0.0-beta5"
+  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-1.0.0-beta5.tgz#5445976c22bf5bc0a92b91ccb38dafacac966d2a"
   dependencies:
     lodash.isempty "^4.4.0"
     lodash.times "^4.3.2"
     opencollective "^1.0.3"
     prop-types "^15.5.8"
+    react-native-touchable-scale "2.0.0"
 
 react-native-fontawesome@^5.7.0:
   version "5.7.0"
@@ -6505,6 +6506,12 @@ react-native-scripts@1.11.1:
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"
   resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"
+  dependencies:
+    prop-types "^15.6.0"
+
+react-native-touchable-scale@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-touchable-scale/-/react-native-touchable-scale-2.0.0.tgz#13a83a9423e46049cad3e3cc306eba2130883cb1"
   dependencies:
     prop-types "^15.6.0"
 

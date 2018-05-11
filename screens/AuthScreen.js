@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import { Icon, Input, FormValidationMessage, Button } from 'react-native-elements';
 import { View, AsyncStorage, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
@@ -83,13 +83,13 @@ class AuthScreen extends Component {
     if (this.state.login) {
       content = (
         <View>
-          <FormLabel>Email</FormLabel>
-          <FormInput
+          <Input
+            label="Email"
             value={this.props.email}
             placeholder="example@provider.com"
             onChangeText={this.onEmailChange} />
-          <FormLabel>Password</FormLabel>
-          <FormInput
+          <Input
+            label="Password"
             secureTextEntry
             value={this.props.password}
             placeholder="123456+"
@@ -99,23 +99,23 @@ class AuthScreen extends Component {
     } else {
       content = (
         <View>
-          <FormLabel>First Name</FormLabel>
-          <FormInput
+          <Input
+            label="First Name"
             value={this.props.fname}
             placeholder="Ivan"
             onChangeText={this.onFNameChange} />
-          <FormLabel>Last Name</FormLabel>
-          <FormInput
+          <Input
+            label="Last Name"
             value={this.props.lname}
             placeholder="Blimans"
             onChangeText={this.onLNameChange} />
-          <FormLabel>Email</FormLabel>
-          <FormInput
+          <Input
+            label="Email"
             value={this.props.email}
             placeholder="example@provider.com"
             onChangeText={this.onEmailChange} />
-          <FormLabel>Password</FormLabel>
-          <FormInput
+          <Input
+            label="Password"
             secureTextEntry
             value={this.props.password}
             placeholder="123456+"

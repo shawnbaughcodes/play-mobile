@@ -14,57 +14,58 @@ const SportsScrollWrapper = styled.View`
 `;
 
 class SportsScreen extends Component {
-    state = { sports: [], userSports: [] }
-    componentDidMount() {
-        this.props.getAllSports();
-        this.props.getUserSports();
-    }
+	state = { sports: [], userSports: [] }
+	componentDidMount() {
+		this.props.getAllSports();
+		this.props.getUserSports();
+	}
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ sports: nextProps.sports })
-        this.setState({ userSports: nextProps.user.userSports })
-    }
+	componentWillReceiveProps(nextProps) {
+		this.setState({ sports: nextProps.sports })
+		this.setState({ userSports: nextProps.user.userSports })
+	}
 
-    onUpdateSportsData = (sport) => {
-        this.props.addSportsData(sport)
-    }
+	onUpdateSportsData = (sport) => {
+		this.props.addSportsData(sport)
+	}
 
-    render() {
+	render() {
 
-        const { sports, userSports } = this.state;
-        return (
-            <View style={{ flex: 1 }}>
-                <HeaderComp />
-                <SportsTitle sports={userSports !== null && userSports} />
-                <ScrollView>
-                    {sports === [] ? (
-                        <TouchableOpacity key="TouchSportsOption">
-                            <SportsOption
-                                key="SportsOption"
-                                sport="LOADING..."
-                            />
-                        </TouchableOpacity>
-                    ) : (
-                            sports.map((sport) => (
-                                <TouchableOpacity key={sport} onPress={() => this.onUpdateSportsData(sport)}>
-                                    {userSports.contains(sport) && <SportsOption
-                                        key={sport}
-                                        sport={sport}
-                                    />}
-                                </TouchableOpacity>
-                            ))
-                        )}
-                </ScrollView>
-            </View>
-        );
-    }
+		const { sports, userSports } = this.state;
+		return (
+			<View style={{ flex: 1 }}>
+				<SportsTitle sports={userSports !== null && userSports} />
+				<ScrollView>
+					{sports === [] ? (
+						<TouchableOpacity key="TouchSportsOption">
+							<SportsOption
+								key="SportsOption"
+								sport="LOADING..."
+							/>
+						</TouchableOpacity>
+					) : (
+							sports.map((sport) => (
+								<TouchableOpacity key={sport} onPress={() => this.onUpdateSportsData(sport)}>
+									{userSports && <SportsOption
+										key={sport}
+										sport={sport}
+									/>}
+								</TouchableOpacity>
+							))
+						)}
+				</ScrollView>
+			</View>
+		);
+	}
 }
 
 const mapStateToProps = state => {
-    return {
-        sports: state.sports,
-        user: state.user,
-    };
+	console.log(state);
+
+	return {
+		sports: state.sports,
+		user: state.user,
+	};
 }
 
 export default connect(mapStateToProps, actions)(SportsScreen);

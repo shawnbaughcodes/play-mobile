@@ -16,6 +16,10 @@ export const UPDATE_TEAM_SUCCESS = 'update_team_success';
 export const UPDATE_TEAM_FAIL = 'update_team_fail';
 export const GET_USER_SPORTS_SUCCESS = 'get_user_sports_success';
 export const GET_USER_FRIENDS_SUCCESS = 'get_user_friends_success';
+export const SUBMIT_POST_SUCCESS = 'submit_post_success';
+export const POST_TEXT_CHANGED = 'post_text_changed';
+export const ADD_FRIEND_SUCCESS = 'add_friend_success';
+export const GET_ALL_POSTS_SUCCESS = 'get_all_posts_success';
 
 //FORM CHANGES
 export const FNAME_CHANGED = 'fname_changed';
