@@ -16,7 +16,6 @@ import HomeScreen from './screens/HomeScreen';
 import SportsScreen from './screens/SportsScreen';
 import TeamsScreen from './screens/TeamsScreen';
 import NewsScreen from './screens/NewsScreen';
-import AccountScreen from './screens/AccountScreen';
 
 export default class App extends React.Component {
   async componentWillMount() {
@@ -36,77 +35,77 @@ export default class App extends React.Component {
         screen: AuthScreen
       },
       main: {
-        screen: StackNavigator({
-          screen: TabNavigator({
-            home: {
-              screen: HomeScreen,
-              navigationOptions: () => ({
-                title: "Home",
-                headerBackTitle: null,
-                headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
-                headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
-                tabBarIcon: ({ tintColor }) => (<Image
-                  source={require('./assets/icons/home.png')}
-                  style={[styles.icon, {
-                    tintColor
-                  }]} />)
-              })
-            },
-            sports: {
-              screen: SportsScreen,
-              navigationOptions: () => ({
-                title: "Sports",
-                headerBackTitle: null,
-                headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
-                headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
-                tabBarIcon: ({ tintColor }) => (<Image
-                  source={require('./assets/icons/team.png')}
-                  style={[styles.icon, {
-                    tintColor
-                  }]} />)
-              })
-            },
-            teams: {
-              screen: TeamsScreen,
-              navigationOptions: () => ({
-                title: "Teams",
-                headerBackTitle: null,
-                headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
-                headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
-                tabBarIcon: ({ tintColor }) => (<Image
-                  source={require('./assets/icons/tick-inside-circle.png')}
-                  style={[styles.icon, {
-                    tintColor
-                  }]} />)
-              })
-            },
-            news: {
-              screen: NewsScreen,
-              navigationOptions: () => ({
-                title: "News",
-                headerBackTitle: null,
-                headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
-                headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
-                tabBarIcon: ({ tintColor }) => (<Image
-                  source={require('./assets/icons/newspaper.png')}
-                  style={[styles.icon, {
-                    tintColor
-                  }]} />),
-                title: 'News'
-              })
-            },
-          }, {
-              tabBarPosition: 'bottom',
-              swipeEnabled: true,
-              animationEnabled: true,
-              lazy: true,
-              tabBarOptions: {
-                backBehavior: 'none',
-                activeTintColor: '#4CE0D2',
-                showLabel: true,
-              }
+
+        screen: TabNavigator({
+          home: {
+            screen: HomeScreen,
+            navigationOptions: () => ({
+              title: "Home",
+              headerBackTitle: null,
+              headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
+              headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
+              tabBarIcon: ({ tintColor }) => (<Image
+                source={require('./assets/icons/home.png')}
+                style={[styles.icon, {
+                  tintColor
+                }]} />)
             })
-        })
+          },
+          sports: {
+            screen: SportsScreen,
+            navigationOptions: () => ({
+              title: "Sports",
+              headerBackTitle: null,
+              headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
+              headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
+              tabBarIcon: ({ tintColor }) => (<Image
+                source={require('./assets/icons/team.png')}
+                style={[styles.icon, {
+                  tintColor
+                }]} />)
+            })
+          },
+          teams: {
+            screen: TeamsScreen,
+            navigationOptions: () => ({
+              title: "Teams",
+              headerBackTitle: null,
+              headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
+              headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
+              tabBarIcon: ({ tintColor }) => (<Image
+                source={require('./assets/icons/tick-inside-circle.png')}
+                style={[styles.icon, {
+                  tintColor
+                }]} />)
+            })
+          },
+          news: {
+            screen: NewsScreen,
+            navigationOptions: () => ({
+              title: "News",
+              headerBackTitle: null,
+              headerLeft: <TouchableOpacity><Icon ios='ios-menu-outline' android="md-menu" style={styles.hamburgerStyles} /></TouchableOpacity>,
+              headerRight: <TouchableOpacity><Icon ios='ios-search-outline' android="md-search" style={styles.chatBubbles} /></TouchableOpacity>,
+              tabBarIcon: ({ tintColor }) => (<Image
+                source={require('./assets/icons/newspaper.png')}
+                style={[styles.icon, {
+                  tintColor
+                }]} />),
+              title: 'News'
+            })
+          },
+        }, {
+            tabBarPosition: 'bottom',
+            swipeEnabled: true,
+            animationEnabled: true,
+            lazy: true,
+            tabBarOptions: {
+              backBehavior: 'none',
+              activeTintColor: '#4CE0D2',
+              showLabel: true,
+            }
+          })
+
       }
     }, {
         navigationOptions: {

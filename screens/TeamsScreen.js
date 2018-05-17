@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Picker, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import Modal from 'react-native-modal';
 import { Icon, FormLabel, FormInput, FormValidationMessage, Button, List, ListItem, CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import CreateTeamButton from '../components/CreateTeamButton';
-import HeaderComp from '../components/HeaderComp';
 import TeamCard from '../components/TeamCard';
 
 import * as actions from 'play/actions';
@@ -34,7 +34,7 @@ class TeamsScreen extends Component {
 		}
 
 		return (
-			<View style={styles.teamsStyle}>
+			<SafeAreaView style={styles.teamsStyle}>
 				<CreateTeamButton showModal={this._showModal} />
 				<ScrollView>
 					<TeamCard
@@ -113,7 +113,7 @@ class TeamsScreen extends Component {
 						<Button title="Cancel" onPress={this._hideModal} />
 					</ScrollView>
 				</Modal>
-			</View>
+			</SafeAreaView>
 
 		);
 	}

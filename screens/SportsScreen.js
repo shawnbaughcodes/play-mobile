@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import SportsOption from '../components/SportsOption';
-import HeaderComp from '../components/HeaderComp';
 import SportsTitle from '../components/SportsTitle';
 import { sportsScrollWrapper } from '../components/styles/sportsStyles';
 
@@ -33,7 +33,7 @@ class SportsScreen extends Component {
 
 		const { sports, userSports } = this.state;
 		return (
-			<View style={{ flex: 1 }}>
+			<SafeAreaView style={{ flex: 1 }}>
 				<SportsTitle sports={userSports !== null && userSports} />
 				<ScrollView>
 					{sports === [] ? (
@@ -54,7 +54,7 @@ class SportsScreen extends Component {
 							))
 						)}
 				</ScrollView>
-			</View>
+			</SafeAreaView>
 		);
 	}
 }

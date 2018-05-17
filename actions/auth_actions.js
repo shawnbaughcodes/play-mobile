@@ -53,9 +53,11 @@ export const doEmailLogin = ({ email, password }) => {
 const registerUserSuccess = async (dispatch, user, userInfo) => {
   const { currentUser } = firebase.auth();
   const { fname, lname } = userInfo;
-
   firebase.database().ref(`users/${currentUser.uid}/`).set({ firstName: fname, lastName: lname, })
-  await AsyncStorage.setItem('user_id', user.uid);
+
+  await AsyncStorage.setItem('user_id', currentUser.uid);
+  await AsyncStorage.setItem('user_fName', fname);
+  await AsyncStorage.setItem('user_lName', lname);
   dispatch({ type: REGISTER_USER_SUCCESS, payload: user })
 }
 
@@ -64,25 +66,17 @@ const registerUserFail = (dispatch, error) => {
 }
 
 const loginUserSuccess = (dispatch, user) => {
-  AsyncStorage.setItem('user_id', user.uid);
-  dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+  firebase.database().ref(`users/${user.uid}`)
+    .on('value', snapshot => {
+      const { firstName, lastName } = snapshot.val();
+
+      AsyncStorage.setItem('user_id', user.uid);
+      AsyncStorage.setItem('user_fName', firstName);
+      AsyncStorage.setItem('user_lName', lastName);
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+    })
 }
 
 const loginUserFail = (dispatch, error) => {
   dispatch({ type: LOGIN_USER_FAIL, payload: error });
 }
-
-// SCHEMA
-
-/*
-    users: {
-        user: {
-            email,
-            password,
-            firstName,
-            lastName,
-            sports,
-            teams,
-        }
-    }
-*/

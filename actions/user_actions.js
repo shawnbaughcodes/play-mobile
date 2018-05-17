@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
-import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL, GET_USER_SPORTS_SUCCESS, GET_USER_FRIENDS_SUCCESS, SUBMIT_POST_SUCCESS, POST_TEXT_CHANGED, ADD_FRIEND_SUCCESS, GET_ALL_POSTS_SUCCESS } from './types';
+import { USER_FETCH_SUCCESS, UPDATE_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAIL, GET_USER_SPORTS_SUCCESS, GET_USER_FRIENDS_SUCCESS, SUBMIT_POST_SUCCESS, POST_TEXT_CHANGED, ADD_FRIEND_SUCCESS, GET_ALL_POSTS_SUCCESS, SIGN_OUT } from './types';
 
 export const postTextChanged = (text) => {
 	return { type: POST_TEXT_CHANGED, payload: text };
@@ -62,17 +62,18 @@ export const addFriend = ({ friend }) => {
 
 export const submitPost = ({ post }) => {
 	return async (dispatch) => {
-		const storedCurrentUser = await AsyncStorage.getItem('user_id');
+		const currentUserId = await AsyncStorage.getItem('user_id');
+		const currentUserfName = await AsyncStorage.getItem('user_fName');
+		const currentUserlName = await AsyncStorage.getItem('user_lName');
 		const today = new Date().toLocaleString();
-		firebase.database().ref(`/users/${storedCurrentUser}`).on('value', snapshot => {
-			const { fName, lName } = snapshot.val();
-		})
+
 		firebase.database().ref(`/users/${storedCurrentUser}/posts`)
-			.push({ content: post, userId: storedCurrentUser, fName: fName, lName: lName, createdAt: today })
+			.push({ content: post, userId: storedCurrentUser, fName: currentUserfName, lName: currentUserlName, createdAt: today })
 			.then(() => {
 				dispatch({ type: SUBMIT_POST_SUCCESS })
 			})
 	}
+
 }
 
 export const getAllPosts = () => {
@@ -82,5 +83,13 @@ export const getAllPosts = () => {
 			.on('value', snapshot => {
 				dispatch({ type: GET_ALL_POSTS_SUCCESS, payload: snapshot.val() })
 			})
+	}
+}
+
+export const signOut = () => {
+	return async (dispatch) => {
+		AsyncStorage.removeItem('user_id');
+		AsyncStorage.removeItem('user_fName');
+		AsyncStorage.removeItem('user_lName');
 	}
 }

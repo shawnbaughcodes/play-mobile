@@ -21,6 +21,10 @@ export const POST_TEXT_CHANGED = 'post_text_changed';
 export const ADD_FRIEND_SUCCESS = 'add_friend_success';
 export const GET_ALL_POSTS_SUCCESS = 'get_all_posts_success';
 
+// UI TYPES
+export const OPEN_MODAL = 'open_modal';
+export const CLOSE_MODAL = 'close_modal';
+
 //FORM CHANGES
 export const FNAME_CHANGED = 'fname_changed';
 export const LNAME_CHANGED = 'lname_changed';

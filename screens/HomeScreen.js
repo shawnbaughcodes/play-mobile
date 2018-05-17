@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Dimensions, TextInput } from 'react-native';
+import { View, ScrollView, Dimensions, TextInput, Text, TouchableOpacity } from 'react-native';
 import { Icon, Button, } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-navigation';
 
 import SinglePost from '../components/SinglePost';
-import HeaderComp from '../components/HeaderComp';
 import AnyModal from '../components/Modal';
 
 import * as actions from '../actions'
-import AccountScreen from './AccountScreen';
+import AccountModal from '../components/AccountModal';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -19,6 +19,7 @@ class HomeScreen extends Component {
 	}
 	componentWillMount() {
 		this.props.getAllPosts();
+
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({ posts: nextProps.posts });
@@ -33,15 +34,47 @@ class HomeScreen extends Component {
 	onOpenAccount = () => {
 		this.props.navigation.navigate('account');
 	}
+	renderPostCards = (posts) => {
+		let content;
+		if (posts === null) {
+			content = <SinglePost
+				firstname='LOADING'
+				lastname='POSTS'
+				post='LOADING...'
+			/>
+		} else {
+			content =
+				Object.values(posts).map(post =>
+					<SinglePost
+						key={post.content}
+						firstname={post.userId}
+						lastname='Superlongname'
+						post={post.content}
+					/>
+				)
+		}
+
+		return content;
+	}
 	showPostModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 
 	render() {
 		const { isModalVisible, posts } = this.state;
-		console.log(Object.values(posts));
+		const { post, submitPost, openModal, modalVisible, user, signOut, navigation, } = this.props;
 
-		const { post, submitPost } = this.props;
+
 		return (
-			<View style={{ flex: 1 }}>
+			<SafeAreaView forceInset={{ top: 'always' }} style={styles.safeAreaStyles}>
+				<AccountModal modalVisible={modalVisible} user={user} navigation={navigation} />
+				<View style={styles.headerStyles}>
+					<TouchableOpacity onPress={openModal}>
+						<Icon name='menu' size={25} style={styles.hamburgerStyles} />
+					</TouchableOpacity>
+					<Text style={styles.headerTextStyles}>Home</Text>
+					<TouchableOpacity>
+						<Icon name='search' size={25} style={styles.hamburgerStyles} />
+					</TouchableOpacity>
+				</View>
 				{isModalVisible &&
 					<AnyModal>
 						<TextInput
@@ -66,15 +99,9 @@ class HomeScreen extends Component {
 					raised
 				/>
 				<ScrollView style={{ flex: 1 }}>
-					{Object.values(posts).map(post =>
-						<SinglePost
-							firstname={post.userId}
-							lastname='Superlongname'
-							post={post.content}
-						/>
-					)}
+					{this.renderPostCards(posts)}
 				</ScrollView>
-			</View>
+			</SafeAreaView>
 		);
 	}
 }
@@ -85,6 +112,18 @@ const styles = {
 		position: 'absolute',
 		bottom: 10,
 		right: 10,
+	},
+	safeAreaStyles: {
+		flex: 1,
+	},
+	headerStyles: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginLeft: 10,
+		marginRight: 10,
+	},
+	headerTextStyles: {
+		fontSize: 20,
 	}
 }
 
@@ -93,6 +132,8 @@ function mapStateToProps(state) {
 		post: state.user.post,
 		friends: state.user.friends,
 		posts: state.user.posts,
+		modalVisible: state.ui.modalVisible,
+		user: state.user,
 	}
 }
 

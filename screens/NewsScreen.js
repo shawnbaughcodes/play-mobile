@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { ScrollView, Modal, Text, WebView } from 'react-native';
 import { Container, Header, Body, Title, Left, Right } from 'native-base';
+import { SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 const API = require('../api-key');
 
 import * as actions from '../actions';
 
 import NewsButton from '../components/NewsButton';
-import HeaderComp from '../components/HeaderComp';
 
 const mapStateToProps = ({ news }) => {
 	return {
@@ -32,7 +32,7 @@ class NewsScreen extends Component {
 	render() {
 
 		return (
-			<Container style={styles.newsStyle}>
+			<SafeAreaView style={styles.newsStyle}>
 				<ScrollView style={{ marginTop: 10 }}>
 					{this.state.articles.map((article) => (
 						<NewsButton
@@ -44,7 +44,7 @@ class NewsScreen extends Component {
 						/>
 					))}
 				</ScrollView>
-			</Container>
+			</SafeAreaView>
 		);
 	}
 }

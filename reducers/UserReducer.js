@@ -5,7 +5,8 @@ import {
 	SUBMIT_POST_SUCCESS,
 	POST_TEXT_CHANGED,
 	ADD_FRIEND_SUCCESS,
-	GET_ALL_POSTS_SUCCESS
+	GET_ALL_POSTS_SUCCESS,
+	SIGN_OUT,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -61,6 +62,8 @@ export default (state = INITIAL_STATE, action) => {
 				...state,
 				posts: action.payload
 			}
+		case SIGN_OUT:
+			return INITIAL_STATE;
 		default:
 			return state;
 	}
