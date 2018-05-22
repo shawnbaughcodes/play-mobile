@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
-import { Icon, Input, FormValidationMessage, Button } from 'react-native-elements';
+import {
+  Icon,
+  Input,
+  FormValidationMessage,
+  Button
+} from 'react-native-elements';
 import { View, AsyncStorage, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const SCREEN_WIDTH = Dimensions
-  .get('window')
-  .width;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 class AuthScreen extends Component {
   state = {
     isModalVisible: false,
     login: false,
-    register: false,
-  }
-  _showLoginModal = () => this.setState({ isModalVisible: true, login: true })
-  _showRegisterModal = () => this.setState({ isModalVisible: true, register: true })
-  _hideModal = () => this.setState({ isModalVisible: false, login: false, register: false })
+    register: false
+  };
+  _showLoginModal = () => this.setState({ isModalVisible: true, login: true });
+  _showRegisterModal = () =>
+    this.setState({ isModalVisible: true, register: true });
+  _hideModal = () =>
+    this.setState({ isModalVisible: false, login: false, register: false });
 
   componentDidMount() {
     this.onAuthComplete(this.props);
@@ -29,54 +34,41 @@ class AuthScreen extends Component {
   onAuthComplete(props) {
     if (props.userIsRegistered) {
       this._hideModal();
-      this
-        .props
-        .navigation
-        .navigate('main');
+      this.props.navigation.navigate('main');
     }
   }
 
-  onEmailChange = (text) => {
-    this
-      .props
-      .emailChanged(text.toLowerCase());
-  }
+  onEmailChange = text => {
+    this.props.emailChanged(text.toLowerCase());
+  };
 
-  onPasswordChange = (text) => {
-    this
-      .props
-      .passwordChanged(text);
-  }
+  onPasswordChange = text => {
+    this.props.passwordChanged(text);
+  };
 
-  onFNameChange = (text) => {
-    this
-      .props
-      .fNameChanged(text);
-  }
+  onFNameChange = text => {
+    this.props.fNameChanged(text);
+  };
 
-  onLNameChange = (text) => {
-    this
-      .props
-      .lNameChanged(text);
-  }
+  onLNameChange = text => {
+    this.props.lNameChanged(text);
+  };
 
   onRegisterPress = () => {
     const { fname, lname, email, password } = this.props;
-    this
-      .props
-      .registerUser({ fname, lname, email, password });
-    this.onAuthComplete(this.props)
-  }
+    this.props.registerUser({ fname, lname, email, password });
+    this.onAuthComplete(this.props);
+  };
 
   onLoginPress = () => {
     const { email, password } = this.props;
     this.props.doEmailLogin({ email, password });
     this.onAuthComplete(this.props);
-  }
+  };
 
   onCancelPress = () => {
     this._hideModal();
-  }
+  };
 
   renderFormContent = () => {
     let content;
@@ -85,46 +77,52 @@ class AuthScreen extends Component {
         <View>
           <Input
             label="Email"
-            value={this.props.email}
+            name={this.props.email}
             placeholder="example@provider.com"
-            onChangeText={this.onEmailChange} />
+            onChangeText={this.onEmailChange}
+          />
           <Input
             label="Password"
             secureTextEntry
-            value={this.props.password}
+            name={this.props.password}
             placeholder="123456+"
-            onChangeText={this.onPasswordChange} />
+            onChangeText={this.onPasswordChange}
+          />
         </View>
-      )
+      );
     } else {
       content = (
         <View>
           <Input
             label="First Name"
-            value={this.props.fname}
+            name={this.props.fname}
             placeholder="Ivan"
-            onChangeText={this.onFNameChange} />
+            onChangeText={this.onFNameChange}
+          />
           <Input
             label="Last Name"
-            value={this.props.lname}
+            name={this.props.lname}
             placeholder="Blimans"
-            onChangeText={this.onLNameChange} />
+            onChangeText={this.onLNameChange}
+          />
           <Input
             label="Email"
-            value={this.props.email}
+            name={this.props.email}
             placeholder="example@provider.com"
-            onChangeText={this.onEmailChange} />
+            onChangeText={this.onEmailChange}
+          />
           <Input
             label="Password"
             secureTextEntry
-            value={this.props.password}
+            name={this.props.password}
             placeholder="123456+"
-            onChangeText={this.onPasswordChange} />
+            onChangeText={this.onPasswordChange}
+          />
         </View>
-      )
+      );
     }
     return content;
-  }
+  };
 
   renderButton = () => {
     let content;
@@ -136,8 +134,9 @@ class AuthScreen extends Component {
           style={{
             marginBottom: 10,
             marginTop: 10
-          }} />
-      )
+          }}
+        />
+      );
     } else if (this.state.register) {
       content = (
         <Button
@@ -146,25 +145,27 @@ class AuthScreen extends Component {
           style={{
             marginBottom: 10,
             marginTop: 10
-          }} />
-      )
+          }}
+        />
+      );
     }
     return content;
-  }
+  };
   render() {
     return (
       <View style={styles.containerStyle}>
         <Icon
           reverse
-          type='font-awesome'
-          name='sign-in'
+          type="font-awesome"
+          name="sign-in"
           size={40}
           iconStyle={styles.iconStyle}
-          onPress={this._showLoginModal} />
+          onPress={this._showLoginModal}
+        />
         <Icon
           reverse
-          type='font-awesome'
-          name='pencil'
+          type="font-awesome"
+          name="pencil"
           size={40}
           iconStyle={styles.iconStyle}
           onPress={this._showRegisterModal}
@@ -176,8 +177,8 @@ class AuthScreen extends Component {
               backgroundColor: 'white',
               paddingTop: 100,
               margin: 0
-            }}>
-
+            }}
+          >
             {this.renderFormContent()}
             {this.renderButton()}
             <Button title="Cancel" onPress={this.onCancelPress} />
@@ -206,7 +207,13 @@ const styles = {
   }
 };
 const mapStateToProps = ({ auth }) => {
-  return { userIsRegistered: auth.userIsRegistered, email: auth.email, fname: auth.fname, lname: auth.lname, password: auth.password };
-}
+  return {
+    userIsRegistered: auth.userIsRegistered,
+    email: auth.email,
+    fname: auth.fname,
+    lname: auth.lname,
+    password: auth.password
+  };
+};
 
 export default connect(mapStateToProps, actions)(AuthScreen);

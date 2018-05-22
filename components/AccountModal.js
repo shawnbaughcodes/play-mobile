@@ -1,73 +1,81 @@
 import React from 'react';
-import { View, Text, Modal, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView
+} from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
-import AccountSelection from './AccountSelection'
+import AccountSelection from './AccountSelection';
 import * as actions from '../actions';
-import { signOut } from '../actions';
 
-const SCREEN_WIDTH = Dimensions
-  .get('window')
-  .width;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const AccountModal = (props) => {
+const AccountModal = props => {
   const { closeModal, modalVisible, user, signOut, navigation } = props;
 
   return (
     <View>
-      <Modal
-        animationType="fade"
-        transparent={false}
-        visible={modalVisible}
-      >
+      <Modal animationType="fade" transparent={false} visible={modalVisible}>
         <View>
           <View style={styles.userHeadStyle}>
             <Avatar
               xlarge
               rounded
               source={{
-                uri: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg'
+                uri:
+                  'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg'
               }}
               style={{
                 width: 100,
                 height: 100
-              }} />
+              }}
+            />
           </View>
           <View style={styles.infoStyles}>
-            <Text style={styles.nameStyles}>{`${user.firstName} ${user.lastName}`}</Text>
+            <Text style={styles.nameStyles}>{`${user.firstName} ${
+              user.lastName
+            }`}</Text>
             <Text style={styles.hometownStyles}>Hometown</Text>
             <Text style={styles.headlineStyles}>Headline</Text>
           </View>
           <ScrollView style={styles.containerStyle}>
             <TouchableOpacity>
-              <AccountSelection title='Teams' />
+              <AccountSelection title="Teams" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <AccountSelection title='Upcoming Games' />
+              <AccountSelection title="Upcoming Games" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <AccountSelection title='My Sports' />
+              <AccountSelection title="My Sports" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.popToTop()}>
+            <TouchableOpacity
+              onPress={() => signOut() && navigation.popToTop()}
+            >
               <AccountSelection
                 style={{
                   color: 'red'
                 }}
-                title='Sign Out' />
+                title="Sign Out"
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={closeModal}>
               <AccountSelection
                 style={{
                   color: 'red'
                 }}
-                title='Close' />
+                title="Close"
+              />
             </TouchableOpacity>
           </ScrollView>
         </View>
       </Modal>
-    </View >
+    </View>
   );
-}
+};
 
 const styles = {
   userHeadStyle: {
