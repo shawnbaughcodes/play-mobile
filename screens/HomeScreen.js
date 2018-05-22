@@ -19,22 +19,21 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class HomeScreen extends Component {
   state = {
-    isModalVisible: false,
     posts: {}
   };
 
   componentWillMount() {
-    // this.props.getAllPosts();
+    this.props.onGetAllPosts();
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ posts: nextProps.posts });
   }
   onPostTextChange = text => {
-    this.props.postTextChanged(text);
+    this.props.onPostTextChanged(text);
   };
   onSubmitPost = () => {
     const { post } = this.props;
-    this.props.submitPost({ post });
+    this.props.onSubmitPost({ post });
   };
   renderPostCards = posts => {
     let content;
@@ -55,19 +54,21 @@ class HomeScreen extends Component {
 
     return content;
   };
-  showPostModal = () =>
-    this.setState({ isModalVisible: !this.state.isModalVisible });
 
   render() {
-    const { isModalVisible, posts } = this.state;
+    console.log(this.props);
     const {
       post,
+      posts,
       submitPost,
-      openModal,
-      modalVisible,
+      onOpenAccountModal,
+      onOpenPostModal,
+      accountModalVisible,
+      postModalVisible,
       user,
       signOut,
-      navigation
+      navigation,
+      onPostTextChange
     } = this.props;
 
     return (
@@ -76,12 +77,12 @@ class HomeScreen extends Component {
         style={styles.safeAreaStyles}
       >
         <AccountModal
-          modalVisible={modalVisible}
+          modalVisible={accountModalVisible}
           user={user}
           navigation={navigation}
         />
         <View style={styles.headerStyles}>
-          <TouchableOpacity onPress={openModal}>
+          <TouchableOpacity onPress={onOpenAccountModal}>
             <Icon name="menu" size={25} style={styles.hamburgerStyles} />
           </TouchableOpacity>
           <Text style={styles.headerTextStyles}>Home</Text>
@@ -89,14 +90,14 @@ class HomeScreen extends Component {
             <Icon name="search" size={25} style={styles.hamburgerStyles} />
           </TouchableOpacity>
         </View>
-        {isModalVisible && (
+        {postModalVisible && (
           <AnyModal>
             <TextInput
               autoFocus
               editable={true}
               multiline={true}
               numberOfLines={10}
-              onChangeText={this.onPostTextChange}
+              onChangeText={onPostTextChange}
               placeholder="What's on your mind..."
               style={{
                 paddingBottom: 200,
@@ -120,7 +121,7 @@ class HomeScreen extends Component {
           color="#00aced"
           containerStyle={styles.iconStyles}
           name="create"
-          onPress={this.showPostModal}
+          onPress={onOpenPostModal}
           raised
         />
         <ScrollView style={{ flex: 1 }}>

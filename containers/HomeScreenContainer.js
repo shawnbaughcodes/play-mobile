@@ -6,13 +6,18 @@ const mapStateToProps = state => ({
   post: state.user.post,
   friends: state.user.friends,
   posts: state.user.posts,
-  modalVisible: state.ui.modalVisible,
+  accountModalVisible: state.ui.modals.accountModalVisible,
+  postModalVisible: state.ui.modals.accountModalVisible,
   user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPosts()),
-  submitPost: () => dispatch(submitPost())
+  onGetAllPosts: () => dispatch(actions.getAllPosts()),
+  onSubmitPost: () => dispatch(actions.submitPost()),
+  onPostTextChanged: text => dispatch(actions.postTextChanged(text)),
+  onOpenAccountModal: () => dispatch(actions.openAccountModal()),
+  onOpenPostModal: () => dispatch(actions.openPostModal()),
+  onCloseModal: () => dispatch(actions.closeModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

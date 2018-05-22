@@ -15,11 +15,15 @@ import * as actions from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const AccountModal = props => {
-  const { closeModal, modalVisible, user, signOut, navigation } = props;
+  const { closeModal, accountModalVisible, user, signOut, navigation } = props;
 
   return (
     <View>
-      <Modal animationType="fade" transparent={false} visible={modalVisible}>
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={accountModalVisible}
+      >
         <View>
           <View style={styles.userHeadStyle}>
             <Avatar
@@ -29,10 +33,7 @@ const AccountModal = props => {
                 uri:
                   'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkIAAAAJGU3NTQ5YWQyLTIxZDQtNDUwZi1iMWQxLTZiOGNlOTA4YzZhMA.jpg'
               }}
-              style={{
-                width: 100,
-                height: 100
-              }}
+              style={{ width: 100, height: 100 }}
             />
           </View>
           <View style={styles.infoStyles}>
@@ -55,20 +56,10 @@ const AccountModal = props => {
             <TouchableOpacity
               onPress={() => signOut() && navigation.popToTop()}
             >
-              <AccountSelection
-                style={{
-                  color: 'red'
-                }}
-                title="Sign Out"
-              />
+              <AccountSelection style={{ color: 'red' }} title="Sign Out" />
             </TouchableOpacity>
             <TouchableOpacity onPress={closeModal}>
-              <AccountSelection
-                style={{
-                  color: 'red'
-                }}
-                title="Close"
-              />
+              <AccountSelection style={{ color: 'red' }} title="Close" />
             </TouchableOpacity>
           </ScrollView>
         </View>

@@ -22,7 +22,8 @@ export const ADD_FRIEND_SUCCESS = 'add_friend_success';
 export const GET_ALL_POSTS_SUCCESS = 'get_all_posts_success';
 
 // UI TYPES
-export const OPEN_MODAL = 'open_modal';
+export const OPEN_ACCOUNT_MODAL = 'open_account_modal';
+export const OPEN_POST_MODAL = 'open_post_modal';
 export const CLOSE_MODAL = 'close_modal';
 
 //FORM CHANGES

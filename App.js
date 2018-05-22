@@ -19,7 +19,7 @@ const { apiKey, db, bucket, id, domain, messaging } = require('./firebase-key');
 
 import WelcomeScreen from './screens/WelcomeScreen';
 import AuthScreen from './screens/AuthScreen';
-import HomeScreen from './screens/HomeScreen';
+import HomeScreenContainer from './containers/HomeScreenContainer';
 import SportsScreen from './screens/SportsScreen';
 import TeamsScreen from './screens/TeamsScreen';
 import NewsScreen from './screens/NewsScreen';
@@ -46,7 +46,7 @@ export default class App extends React.Component {
           screen: TabNavigator(
             {
               home: {
-                screen: HomeScreen,
+                screen: HomeScreenContainer,
                 navigationOptions: () => ({
                   title: 'Home',
                   headerBackTitle: null,
