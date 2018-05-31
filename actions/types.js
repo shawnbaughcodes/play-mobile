@@ -23,7 +23,9 @@ export const GET_ALL_POSTS_SUCCESS = 'get_all_posts_success';
 
 // UI TYPES
 export const OPEN_ACCOUNT_MODAL = 'open_account_modal';
-export const OPEN_POST_MODAL = 'open_post_modal';
+export const OPEN_EVENT_MODAL = 'open_event_modal';
+export const OPEN_EVENT_INFO_MODAL = 'open_event_info_modal';
+export const OPEN_CREATE_EVENT_MODAL = 'open_create_event_modal';
 export const CLOSE_MODAL = 'close_modal';
 
 //FORM CHANGES

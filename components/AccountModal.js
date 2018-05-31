@@ -8,6 +8,7 @@ import {
   ScrollView
 } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 import AccountSelection from './AccountSelection';
 import * as actions from '../actions';
@@ -15,15 +16,12 @@ import * as actions from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const AccountModal = props => {
-  const { closeModal, accountModalVisible, user, signOut, navigation } = props;
+  const { onCloseModal, modalVisible, user, signOut, navigation } = props;
+  console.log(props);
 
   return (
-    <View>
-      <Modal
-        animationType="fade"
-        transparent={false}
-        visible={accountModalVisible}
-      >
+    <Modal animationType="fade" transparent={false} visible={modalVisible}>
+      <SafeAreaView style={styles.safeAreaStyles}>
         <View>
           <View style={styles.userHeadStyle}>
             <Avatar
@@ -58,17 +56,22 @@ const AccountModal = props => {
             >
               <AccountSelection style={{ color: 'red' }} title="Sign Out" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={closeModal}>
+            <TouchableOpacity onPress={onCloseModal}>
               <AccountSelection style={{ color: 'red' }} title="Close" />
             </TouchableOpacity>
           </ScrollView>
         </View>
-      </Modal>
-    </View>
+      </SafeAreaView>
+    </Modal>
   );
 };
 
 const styles = {
+  safeAreaStyles: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
   userHeadStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -96,12 +99,7 @@ const styles = {
   },
   lasttitleStyle: {
     color: 'red'
-  },
-  containerStyle: {
-    width: SCREEN_WIDTH,
-    height: '100%',
-    marginTop: 20
   }
 };
 
-export default connect(null, actions)(AccountModal);
+export default AccountModal;

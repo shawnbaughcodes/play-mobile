@@ -7,7 +7,9 @@ const mapStateToProps = state => ({
   friends: state.user.friends,
   posts: state.user.posts,
   accountModalVisible: state.ui.modals.accountModalVisible,
-  postModalVisible: state.ui.modals.accountModalVisible,
+  eventModalVisible: state.ui.modals.eventModalVisible,
+  eventInfoModalVisible: state.ui.modals.eventInfoModalVisible,
+  createEventModalVisible: state.ui.modals.createEventModalVisible,
   user: state.user
 });
 
@@ -16,7 +18,9 @@ const mapDispatchToProps = dispatch => ({
   onSubmitPost: () => dispatch(actions.submitPost()),
   onPostTextChanged: text => dispatch(actions.postTextChanged(text)),
   onOpenAccountModal: () => dispatch(actions.openAccountModal()),
-  onOpenPostModal: () => dispatch(actions.openPostModal()),
+  onOpenEventModal: () => dispatch(actions.openEventModal()),
+  onOpenEventInfoModal: () => dispatch(actions.openEventInfoModal()),
+  onOpenCreateEventModal: () => dispatch(actions.openCreateEventModal()),
   onCloseModal: () => dispatch(actions.closeModal())
 });
 
