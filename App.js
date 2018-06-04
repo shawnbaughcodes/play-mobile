@@ -21,7 +21,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import AuthScreen from './screens/AuthScreen';
 import HomeScreenContainer from './containers/HomeScreenContainer';
 import SportsScreen from './screens/SportsScreen';
-import TeamsScreen from './screens/TeamsScreen';
+import TeamScreenContainer from './containers/TeamScreenContainer';
 import NewsScreen from './screens/NewsScreen';
 
 export default class App extends React.Component {
@@ -118,7 +118,7 @@ export default class App extends React.Component {
                 })
               },
               teams: {
-                screen: TeamsScreen,
+                screen: TeamScreenContainer,
                 navigationOptions: () => ({
                   title: 'Teams',
                   headerBackTitle: null,

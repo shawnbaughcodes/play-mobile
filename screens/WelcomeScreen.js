@@ -20,7 +20,7 @@ class WelcomeScreen extends Component {
     const user_id = await AsyncStorage.getItem('user_id');
 
     if (user_id) {
-      this.props.navigation.navigate('main');
+      this.props.navigation.navigate('teams');
     } else {
       AsyncStorage.removeItem('user_id');
     }

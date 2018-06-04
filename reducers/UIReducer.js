@@ -3,6 +3,7 @@ import {
   OPEN_EVENT_MODAL,
   OPEN_EVENT_INFO_MODAL,
   OPEN_CREATE_EVENT_MODAL,
+  OPEN_CREATE_TEAM_MODAL,
   CLOSE_MODAL,
   SIGN_OUT
 } from '../actions/types';
@@ -12,7 +13,8 @@ const INITIAL_STATE = {
     accountModalVisible: false,
     eventModalVisible: false,
     eventInfoModalVisible: false,
-    createEventModalVisible: false
+    createEventModalVisible: false,
+    createTeamModalVisible: false
   }
 };
 
@@ -25,7 +27,8 @@ export default (state = INITIAL_STATE, action) => {
           accountModalVisible: action.payload,
           eventModalVisible: false,
           eventInfoModalVisible: false,
-          createEventModalVisible: false
+          createEventModalVisible: false,
+          createTeamModalVisible: false
         }
       };
 
@@ -36,7 +39,8 @@ export default (state = INITIAL_STATE, action) => {
           eventModalVisible: action.payload,
           eventInfoModalVisible: false,
           accountModalVisible: false,
-          createEventModalVisible: false
+          createEventModalVisible: false,
+          createTeamModalVisible: false
         }
       };
 
@@ -47,7 +51,8 @@ export default (state = INITIAL_STATE, action) => {
           eventInfoModalVisible: action.payload,
           accountModalVisible: false,
           eventModalVisible: false,
-          createEventModalVisible: false
+          createEventModalVisible: false,
+          createTeamModalVisible: false
         }
       };
 
@@ -58,7 +63,20 @@ export default (state = INITIAL_STATE, action) => {
           createEventModalVisible: action.payload,
           eventInfoModalVisible: false,
           accountModalVisible: false,
-          eventModalVisible: false
+          eventModalVisible: false,
+          createTeamModalVisible: false
+        }
+      };
+
+    case OPEN_CREATE_TEAM_MODAL:
+      return {
+        ...state,
+        modals: {
+          createEventModalVisible: false,
+          eventInfoModalVisible: false,
+          accountModalVisible: false,
+          eventModalVisible: false,
+          createTeamModalVisible: action.payload
         }
       };
 
@@ -69,7 +87,8 @@ export default (state = INITIAL_STATE, action) => {
           accountModalVisible: action.payload,
           eventModalVisible: action.payload,
           eventInfoModalVisible: action.payload,
-          createEventModalVisible: action.payload
+          createEventModalVisible: action.payload,
+          createTeamModalVisible: action.payload
         }
       };
 

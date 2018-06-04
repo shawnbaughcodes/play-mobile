@@ -20,12 +20,14 @@ export const SUBMIT_POST_SUCCESS = 'submit_post_success';
 export const POST_TEXT_CHANGED = 'post_text_changed';
 export const ADD_FRIEND_SUCCESS = 'add_friend_success';
 export const GET_ALL_POSTS_SUCCESS = 'get_all_posts_success';
+export const CREATE_EVENT_SUCCESS = 'create_event_success';
 
 // UI TYPES
 export const OPEN_ACCOUNT_MODAL = 'open_account_modal';
 export const OPEN_EVENT_MODAL = 'open_event_modal';
 export const OPEN_EVENT_INFO_MODAL = 'open_event_info_modal';
 export const OPEN_CREATE_EVENT_MODAL = 'open_create_event_modal';
+export const OPEN_CREATE_TEAM_MODAL = 'open_create_team_modal';
 export const CLOSE_MODAL = 'close_modal';
 
 //FORM CHANGES
@@ -33,6 +35,11 @@ export const FNAME_CHANGED = 'fname_changed';
 export const LNAME_CHANGED = 'lname_changed';
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
+export const EVENT_NAME_CHANGED = 'event_name_changed';
+export const DATE_INFO_CHANGED = 'date_info_changed';
+export const LOCATION_INFO_CHANGED = 'location_info_changed';
+export const TEAMS_INFO_CHANGE = 'teams_info_changed';
+
 // API FETCHES
 export const USER_FETCH_SUCCESS = 'user_fetch_success';
 export const USER_FETCH_FAIL = 'user_fetch_fail';
