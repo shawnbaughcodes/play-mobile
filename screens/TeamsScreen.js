@@ -13,8 +13,8 @@ const TeamsScreen = props => {
     <SafeAreaView style={styles.teamsStyle}>
       <ScrollView>
         <TeamCard teamname="Team Name" teamlead="Team Lead" />
-        <TeamCard teamname="Team Name" teamlead="Team Lead" />
-        <TeamCard teamname="Team Name" teamlead="Team Lead" />
+        {/* <TeamCard teamname="Team Name" teamlead="Team Lead" />
+        <TeamCard teamname="Team Name" teamlead="Team Lead" /> */}
       </ScrollView>
       <View style={styles.modalStyles}>
         <CreateTeamModal

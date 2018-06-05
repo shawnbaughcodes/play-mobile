@@ -39,6 +39,9 @@ export const EVENT_NAME_CHANGED = 'event_name_changed';
 export const DATE_INFO_CHANGED = 'date_info_changed';
 export const LOCATION_INFO_CHANGED = 'location_info_changed';
 export const TEAMS_INFO_CHANGE = 'teams_info_changed';
+export const TEAM_NAME_CHANGED = 'team_name_changed';
+export const TEAM_LEADER_NAME_CHANGED = 'team_leader_name_changed';
+export const PLAYERS_CHANGED = 'players_changed';
 
 // API FETCHES
 export const USER_FETCH_SUCCESS = 'user_fetch_success';

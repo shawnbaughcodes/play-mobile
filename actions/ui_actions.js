@@ -39,8 +39,6 @@ export const openCreateTeamModal = dispatch => {
 };
 
 export const closeModal = dispatch => {
-  console.log('HIT');
-
   return dispatch => {
     dispatch({ type: CLOSE_MODAL, payload: false });
   };
