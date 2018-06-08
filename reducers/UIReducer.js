@@ -5,6 +5,7 @@ import {
   OPEN_CREATE_EVENT_MODAL,
   OPEN_CREATE_TEAM_MODAL,
   CLOSE_MODAL,
+  OPEN_USER_SPORTS_MODAL,
   SIGN_OUT
 } from '../actions/types';
 
@@ -14,7 +15,8 @@ const INITIAL_STATE = {
     eventModalVisible: false,
     eventInfoModalVisible: false,
     createEventModalVisible: false,
-    createTeamModalVisible: false
+    createTeamModalVisible: false,
+    userSportsModalVisible: false
   }
 };
 
@@ -80,17 +82,21 @@ export default (state = INITIAL_STATE, action) => {
         }
       };
 
-    case CLOSE_MODAL:
+    case OPEN_USER_SPORTS_MODAL:
       return {
         ...state,
         modals: {
-          accountModalVisible: action.payload,
-          eventModalVisible: action.payload,
-          eventInfoModalVisible: action.payload,
-          createEventModalVisible: action.payload,
-          createTeamModalVisible: action.payload
+          createEventModalVisible: false,
+          eventInfoModalVisible: false,
+          accountModalVisible: false,
+          eventModalVisible: false,
+          createTeamModalVisible: false,
+          userSportsModalVisible: action.payload
         }
       };
+
+    case CLOSE_MODAL:
+      return INITIAL_STATE;
 
     default:
       return state;

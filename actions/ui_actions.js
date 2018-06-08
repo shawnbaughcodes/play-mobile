@@ -1,11 +1,11 @@
 import {
-  OPEN_MODAL,
   CLOSE_MODAL,
   OPEN_ACCOUNT_MODAL,
   OPEN_EVENT_MODAL,
   OPEN_EVENT_INFO_MODAL,
   OPEN_CREATE_EVENT_MODAL,
-  OPEN_CREATE_TEAM_MODAL
+  OPEN_CREATE_TEAM_MODAL,
+  OPEN_USER_SPORTS_MODAL
 } from './types';
 
 export const openAccountModal = dispatch => {
@@ -35,6 +35,12 @@ export const openCreateEventModal = dispatch => {
 export const openCreateTeamModal = dispatch => {
   return dispatch => {
     dispatch({ type: OPEN_CREATE_TEAM_MODAL, payload: true });
+  };
+};
+
+export const openUserSportsModal = dispatch => {
+  return dispatch => {
+    dispatch({ type: OPEN_USER_SPORTS_MODAL, payload: true });
   };
 };
 

@@ -1,68 +1,87 @@
 import React, { Component } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 
 import SportsOption from '../components/SportsOption';
 import SportsTitle from '../components/SportsTitle';
-import { sportsScrollWrapper } from '../components/styles/sportsStyles';
-
-const SportsScrollWrapper = styled.View`
-  ${sportsScrollWrapper};
-`;
+import AccountModal from '../components/AccountModal';
+import Header from '../components/Header';
+import UserSportsModal from '../components/UserSportsModal';
 
 class SportsScreen extends Component {
-  state = { sports: [], userSports: [] };
-  componentDidMount() {
-    this.props.getAllSports();
-    this.props.getUserSports();
+  componentWillMount() {
+    this.props.onGetAllSports();
+    this.props.onGetUserSports();
   }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ sports: nextProps.sports });
-    this.setState({ userSports: nextProps.user.userSports });
-  }
-
-  onUpdateSportsData = sport => {
-    this.props.addSportsData(sport);
-  };
 
   render() {
-    const { sports, userSports } = this.state;
+    const {
+      sports,
+      userSports,
+      onUpdateUserSports,
+      onRemoveUserSport,
+      accountModalVisible,
+      user,
+      onCloseModal,
+      onSignOut,
+      navigation,
+      onOpenAccountModal,
+      userSportsModalVisible,
+      onOpenUserSportsModal
+    } = this.props;
+
+    const userSportsValues =
+      userSports === null ? [] : Object.values(userSports);
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <SportsTitle sports={userSports !== null && userSports} />
+        <Header onOpenAccountModal={onOpenAccountModal} screenName="Home" />
+        <SportsTitle
+          sports={userSports !== null && userSports}
+          onOpenUserSportsModal={onOpenUserSportsModal}
+        />
         <ScrollView>
-          {sports === [] ? (
-            <TouchableOpacity key="TouchSportsOption">
-              <SportsOption key="SportsOption" sport="LOADING..." />
-            </TouchableOpacity>
-          ) : (
-            sports.map(sport => (
-              <TouchableOpacity
+          {sports.map(sport => (
+            <TouchableOpacity
+              key={sport}
+              onPress={
+                userSportsValues.includes(sport)
+                  ? () => onRemoveUserSport(sport)
+                  : () => onUpdateUserSports(sport)
+              }
+            >
+              <SportsOption
                 key={sport}
-                onPress={() => this.onUpdateSportsData(sport)}
-              >
-                {userSports && <SportsOption key={sport} sport={sport} />}
-              </TouchableOpacity>
-            ))
-          )}
+                sport={sport}
+                selected={userSportsValues.includes(sport)}
+              />
+            </TouchableOpacity>
+          ))}
         </ScrollView>
+        <View style={styles.modalStyles}>
+          <AccountModal
+            modalVisible={accountModalVisible}
+            user={user}
+            navigation={navigation}
+            onCloseModal={onCloseModal}
+            onSignOut={onSignOut}
+          />
+          <UserSportsModal
+            userSportsModalVisible={userSportsModalVisible}
+            onCloseModal={onCloseModal}
+            userSports={userSports}
+            userSportsValues={userSportsValues}
+          />
+        </View>
       </SafeAreaView>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-
-  return {
-    sports: state.sports,
-    user: state.user
-  };
+const styles = {
+  modalStyles: {
+    zIndex: 600,
+    height: 0
+  }
 };
-
-export default connect(mapStateToProps, actions)(SportsScreen);
+export default SportsScreen;

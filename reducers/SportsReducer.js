@@ -1,17 +1,19 @@
-import { GET_ALL_SPORTS_SUCCESS, GET_USER_SPORTS_SUCCESS } from '../actions/types';
+import {
+  GET_ALL_SPORTS_SUCCESS,
+  GET_USER_SPORTS_SUCCESS
+} from '../actions/types';
 
 const INITIAL_STATE = {
-	sports: [],
-	userSports: [],
-}
+  sports: [],
+  userSports: []
+};
 
 export default (state = INITIAL_STATE, action) => {
-	switch (action.type) {
+  switch (action.type) {
+    case GET_ALL_SPORTS_SUCCESS:
+      return { ...state, sports: action.payload };
 
-		case GET_ALL_SPORTS_SUCCESS:
-			return action.payload;
-
-		default:
-			return state
-	}
+    default:
+      return state;
+  }
 };

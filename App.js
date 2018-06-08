@@ -20,7 +20,7 @@ const { apiKey, db, bucket, id, domain, messaging } = require('./firebase-key');
 import WelcomeScreen from './screens/WelcomeScreen';
 import AuthScreen from './screens/AuthScreen';
 import HomeScreenContainer from './containers/HomeScreenContainer';
-import SportsScreen from './screens/SportsScreen';
+import SportsScreenContainer from './containers/SportsScreenContainer';
 import TeamScreenContainer from './containers/TeamScreenContainer';
 import NewsScreen from './screens/NewsScreen';
 
@@ -82,7 +82,7 @@ export default class App extends React.Component {
                 })
               },
               sports: {
-                screen: SportsScreen,
+                screen: SportsScreenContainer,
                 navigationOptions: () => ({
                   title: 'Sports',
                   headerBackTitle: null,

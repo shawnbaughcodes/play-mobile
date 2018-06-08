@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
 import firebase from 'firebase';
+import * as actions from '../actions';
 
 import Slide from '../components/Slides';
+import { getAllSports } from '../actions';
 
 const ImagePath = '../assets/';
 
@@ -20,7 +23,7 @@ class WelcomeScreen extends Component {
     const user_id = await AsyncStorage.getItem('user_id');
 
     if (user_id) {
-      this.props.navigation.navigate('teams');
+      this.props.navigation.navigate('sports');
     } else {
       AsyncStorage.removeItem('user_id');
     }
@@ -33,4 +36,4 @@ class WelcomeScreen extends Component {
     return <Slide data={WELCOME_DATA} onComplete={this.onSlidesComplete} />;
   }
 }
-export default WelcomeScreen;
+export default connect(null, actions)(WelcomeScreen);

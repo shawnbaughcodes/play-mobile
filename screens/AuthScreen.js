@@ -74,12 +74,13 @@ class AuthScreen extends Component {
     let content;
     if (this.state.login) {
       content = (
-        <View>
+        <View style={styles.formStyles}>
           <Input
             label="Email"
             name={this.props.email}
             placeholder="example@provider.com"
             onChangeText={this.onEmailChange}
+            inputContainerStyle={styles.inputStyles}
           />
           <Input
             label="Password"
@@ -87,29 +88,33 @@ class AuthScreen extends Component {
             name={this.props.password}
             placeholder="123456+"
             onChangeText={this.onPasswordChange}
+            inputContainerStyle={styles.inputStyles}
           />
         </View>
       );
     } else {
       content = (
-        <View>
+        <View style={styles.formStyles}>
           <Input
             label="First Name"
             name={this.props.fname}
             placeholder="Ivan"
             onChangeText={this.onFNameChange}
+            inputContainerStyle={styles.inputStyles}
           />
           <Input
             label="Last Name"
             name={this.props.lname}
             placeholder="Blimans"
             onChangeText={this.onLNameChange}
+            inputContainerStyle={styles.inputStyles}
           />
           <Input
             label="Email"
             name={this.props.email}
             placeholder="example@provider.com"
             onChangeText={this.onEmailChange}
+            inputContainerStyle={styles.inputStyles}
           />
           <Input
             label="Password"
@@ -117,6 +122,7 @@ class AuthScreen extends Component {
             name={this.props.password}
             placeholder="123456+"
             onChangeText={this.onPasswordChange}
+            inputContainerStyle={styles.inputStyles}
           />
         </View>
       );
@@ -131,10 +137,7 @@ class AuthScreen extends Component {
         <Button
           title="Login"
           onPress={this.onLoginPress}
-          style={{
-            marginBottom: 10,
-            marginTop: 10
-          }}
+          style={styles.submitStyles}
         />
       );
     } else if (this.state.register) {
@@ -142,10 +145,7 @@ class AuthScreen extends Component {
         <Button
           title="Sign Up"
           onPress={this.onRegisterPress}
-          style={{
-            marginBottom: 10,
-            marginTop: 10
-          }}
+          style={styles.submitStyles}
         />
       );
     }
@@ -181,7 +181,11 @@ class AuthScreen extends Component {
           >
             {this.renderFormContent()}
             {this.renderButton()}
-            <Button title="Cancel" onPress={this.onCancelPress} />
+            <Button
+              title="Cancel"
+              onPress={this.onCancelPress}
+              style={styles.cancelStyles}
+            />
           </View>
         </Modal>
       </View>
@@ -204,6 +208,31 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     width: SCREEN_WIDTH
+  },
+  formStyles: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inputStyles: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 50,
+    marginTop: 5,
+    marginBottom: 5
+  },
+  submitStyles: {
+    width: SCREEN_WIDTH / 2,
+    borderRadius: 50,
+    alignSelf: 'center',
+    backgroundColor: 'black',
+    marginBottom: 20
+  },
+  cancelStyles: {
+    width: SCREEN_WIDTH / 2,
+    borderRadius: 50,
+    alignSelf: 'center',
+    backgroundColor: 'grey',
+    marginBottom: 10
   }
 };
 const mapStateToProps = ({ auth }) => {

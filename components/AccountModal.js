@@ -16,8 +16,7 @@ import * as actions from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const AccountModal = props => {
-  const { onCloseModal, modalVisible, user, signOut, navigation } = props;
-  console.log(props);
+  const { onCloseModal, modalVisible, user, onSignOut, navigation } = props;
 
   return (
     <Modal animationType="fade" transparent={false} visible={modalVisible}>
@@ -52,7 +51,7 @@ const AccountModal = props => {
               <AccountSelection title="My Sports" />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => signOut() && navigation.popToTop()}
+              onPress={() => onSignOut() && navigation.popToTop()}
             >
               <AccountSelection style={{ color: 'red' }} title="Sign Out" />
             </TouchableOpacity>

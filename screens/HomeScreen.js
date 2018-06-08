@@ -31,7 +31,7 @@ const HomeScreen = props => {
     accountModalVisible,
     postModalVisible,
     user,
-    signOut,
+    onSignOut,
     navigation,
     onPostTextChange,
     onOpenCreateEventModal,
@@ -68,6 +68,7 @@ const HomeScreen = props => {
           user={user}
           navigation={navigation}
           onCloseModal={onCloseModal}
+          onSignOut={onSignOut}
         />
         <EventModal
           onCloseModal={onCloseModal}

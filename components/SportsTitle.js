@@ -1,33 +1,45 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import styled from 'styled-components';
-import { sportsViewWrapper, sportsTitleText, userSportsTexts } from './styles/sportsStyles';
+import { TouchableOpacity, View, Text } from 'react-native';
 
-const Wrapper = styled.View`
-    ${sportsViewWrapper}
-`;
-const SportsTitleText = styled.Text`
-    ${sportsTitleText}
-`;
-const UserSportsText = styled.Text`
-    ${userSportsTexts}
-`;
+const SportsTitle = props => {
+  const { sports, onOpenUserSportsModal } = props;
+  const userSportsCount = Object.keys(sports).length;
+  return (
+    <View style={styles.wrapperStyles}>
+      <Text style={styles.sportsTitleText}>Pick Your Sports</Text>
+      <TouchableOpacity onPress={onOpenUserSportsModal}>
+        <Text style={styles.userSportsText}>My Sports: {userSportsCount}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.userSportsText}>My Teams: 6</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-const SportsTitle = (props) => {
-    const userSportsCount = Object.keys(props.sports).length;
-
-    return (
-        <Wrapper>
-            <SportsTitleText>Pick Your Sports</SportsTitleText>
-            <TouchableOpacity>
-                <UserSportsText>My Sports: {userSportsCount}</UserSportsText>
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <UserSportsText>My Teams: 6</UserSportsText>
-            </TouchableOpacity>
-        </Wrapper>
-    );
-
-}
+const styles = {
+  wrapperStyles: {
+    height: '30%',
+    opacity: 0.8,
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  sportsTitleText: {
+    fontSize: 45,
+    fontWeight: '800',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 15,
+    paddingRight: 15
+  },
+  userSportsText: {
+    fontSize: 25,
+    fontWeight: '200',
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 15,
+    paddingRight: 15
+  }
+};
 
 export default SportsTitle;

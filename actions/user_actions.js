@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import {
   USER_FETCH_SUCCESS,
   UPDATE_USER_INFO_SUCCESS,
+  UPDATE_USER_SPORTS_SUCCESS,
   UPDATE_USER_INFO_FAIL,
   GET_USER_SPORTS_SUCCESS,
   GET_USER_FRIENDS_SUCCESS,
@@ -32,24 +33,37 @@ export const getUserData = dispatch => {
 };
 
 export const addSportsData = sport => {
-  const { currentUser } = firebase.auth();
-  return dispatch => {
+  return async dispatch => {
+    const storedCurrentUser = await AsyncStorage.getItem('user_id');
     firebase
       .database()
-      .ref(`users/${currentUser.uid}/sports/`)
-      .push(`${sport}`)
+      .ref(`users/${storedCurrentUser}/userSports`)
+      .push(sport)
       .then(() => {
-        dispatch({ type: UPDATE_USER_INFO_SUCCESS });
+        dispatch({ type: UPDATE_USER_SPORTS_SUCCESS });
+      });
+  };
+};
+
+export const removeSportsData = sport => {
+  return async dispatch => {
+    const storedCurrentUser = await AsyncStorage.getItem('user_id');
+    firebase
+      .database()
+      .ref(`users/${storedCurrentUser}/userSports`)
+      .remove(sport)
+      .then(() => {
+        dispatch({ type: UPDATE_USER_SPORTS_SUCCESS });
       });
   };
 };
 
 export const getUserSports = () => {
-  const { currentUser } = firebase.auth();
-  return dispatch => {
+  return async dispatch => {
+    const storedCurrentUser = await AsyncStorage.getItem('user_id');
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/sports`)
+      .ref(`/users/${storedCurrentUser}/userSports/`)
       .on('value', snapshot => {
         dispatch({ type: GET_USER_SPORTS_SUCCESS, payload: snapshot.val() });
       });
@@ -117,8 +131,6 @@ export const getAllPosts = () => {
 };
 
 export const signOut = () => {
-  console.log('HIT!');
-
   return async dispatch => {
     AsyncStorage.removeItem('user_id');
     AsyncStorage.removeItem('user_fName');

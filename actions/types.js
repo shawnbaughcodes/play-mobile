@@ -7,6 +7,7 @@ export const REGISTER_USER_FAIL = 'register_user_fail';
 export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAIL = 'login_user_fail';
 export const UPDATE_USER_INFO_SUCCESS = 'update_user_info_success';
+export const UPDATE_USER_SPORTS_SUCCESS = 'update_user_sports_success';
 export const UPDATE_USER_INFO_FAIL = 'update_user_info_fail';
 export const GET_ALL_SPORTS_SUCCESS = 'get_all_sports_success';
 export const GET_ALL_TEAMS_SUCCESS = 'get_all_teams_success';
@@ -28,6 +29,7 @@ export const OPEN_EVENT_MODAL = 'open_event_modal';
 export const OPEN_EVENT_INFO_MODAL = 'open_event_info_modal';
 export const OPEN_CREATE_EVENT_MODAL = 'open_create_event_modal';
 export const OPEN_CREATE_TEAM_MODAL = 'open_create_team_modal';
+export const OPEN_USER_SPORTS_MODAL = 'open_user_sports_modal';
 export const CLOSE_MODAL = 'close_modal';
 
 //FORM CHANGES

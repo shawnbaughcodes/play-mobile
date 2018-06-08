@@ -21,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
   onOpenEventModal: () => dispatch(actions.openEventModal()),
   onOpenEventInfoModal: () => dispatch(actions.openEventInfoModal()),
   onOpenCreateEventModal: () => dispatch(actions.openCreateEventModal()),
-  onCloseModal: () => dispatch(actions.closeModal())
+  onCloseModal: () => dispatch(actions.closeModal()),
+  onSignOut: () => dispatch(actions.signOut())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

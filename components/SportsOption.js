@@ -3,32 +3,48 @@ import { Text } from 'react-native';
 import { Icon } from 'native-base';
 import styled from 'styled-components';
 
-import { sportsOptionContainer, sportsInnerContainer } from './styles/sportsStyles';
+import {
+  sportsOptionContainer,
+  sportsInnerContainer
+} from './styles/sportsStyles';
 
 const Wrapper = styled.View`
-    ${sportsOptionContainer}
+  ${sportsOptionContainer};
 `;
 const InnerWrapper = styled.View`
-    ${sportsInnerContainer}
+  ${sportsInnerContainer};
 `;
 
-const SportsOption = (props) => (
+const SportsOption = props => {
+  const { sport, selected } = props;
+  return (
     <Wrapper>
-        <Icon active style={styles.iconStyle} name="ios-add-circle" />
-        <Text style={styles.textStyle}>{props.sport}</Text>
+      {selected ? (
+        <Icon active style={styles.iconStyleRemove} name="ios-remove-circle" />
+      ) : (
+        <Icon active style={styles.iconStyleAdd} name="ios-add-circle" />
+      )}
+
+      <Text style={styles.textStyle}>{sport}</Text>
     </Wrapper>
-);
+  );
+};
 
 const styles = {
-    textStyle: {
-        textAlign: 'center',
-        fontSize: 20,
-        color: 'white',
-    },
-    iconStyle: {
-        textAlign: 'center',
-        fontSize: 40,
-        color: 'white',
-    }
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: 'white'
+  },
+  iconStyleAdd: {
+    textAlign: 'center',
+    fontSize: 40,
+    color: 'green'
+  },
+  iconStyleRemove: {
+    textAlign: 'center',
+    fontSize: 40,
+    color: 'red'
+  }
 };
 export default SportsOption;
