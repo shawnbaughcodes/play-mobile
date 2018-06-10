@@ -38,6 +38,7 @@ const HomeScreen = props => {
     onOpenEventInfoModal,
     eventInfoModalVisible
   } = props;
+  console.log(user);
 
   return (
     <SafeAreaView forceInset={{ top: 'always' }} style={styles.safeAreaStyles}>

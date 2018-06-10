@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 const mapStateToProps = state => {
+  console.log(state);
+
   return {
-    createTeamModalVisible: state.ui.modals.createTeamModalVisible
+    createTeamModalVisible: state.ui.modals.createTeamModalVisible,
+    accountModalVisible: state.ui.modals.accountModalVisible,
+    user: state.user
   };
 };
 
@@ -14,7 +18,9 @@ const mapDispatchToProps = dispatch => {
     onTeamLeaderNameChanged: () => dispatch(actions.teamLeaderNameChanged),
     onPlayersChanged: () => dispatch(actions.playersChanged),
     onOpenCreateTeamModal: () => dispatch(actions.openCreateTeamModal()),
-    onCloseModal: () => dispatch(actions.closeModal())
+    onCloseModal: () => dispatch(actions.closeModal()),
+    onOpenAccountModal: () => dispatch(actions.openAccountModal()),
+    onSignOut: () => dispatch(actions.signOut())
   };
 };
 

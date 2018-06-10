@@ -32,10 +32,11 @@ class SportsScreen extends Component {
 
     const userSportsValues =
       userSports === null ? [] : Object.values(userSports);
+    const userSportsKeys = userSports === null ? [] : Object.keys(userSports);
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <Header onOpenAccountModal={onOpenAccountModal} screenName="Home" />
+        <Header onOpenAccountModal={onOpenAccountModal} screenName="Sports" />
         <SportsTitle
           sports={userSports !== null && userSports}
           onOpenUserSportsModal={onOpenUserSportsModal}
@@ -71,6 +72,7 @@ class SportsScreen extends Component {
             onCloseModal={onCloseModal}
             userSports={userSports}
             userSportsValues={userSportsValues}
+            userSportsKeys={userSportsKeys}
           />
         </View>
       </SafeAreaView>

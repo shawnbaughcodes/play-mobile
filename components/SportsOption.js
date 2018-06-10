@@ -1,24 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { Icon } from 'native-base';
-import styled from 'styled-components';
-
-import {
-  sportsOptionContainer,
-  sportsInnerContainer
-} from './styles/sportsStyles';
-
-const Wrapper = styled.View`
-  ${sportsOptionContainer};
-`;
-const InnerWrapper = styled.View`
-  ${sportsInnerContainer};
-`;
 
 const SportsOption = props => {
   const { sport, selected } = props;
   return (
-    <Wrapper>
+    <View style={styles.sportsOptionContainer}>
       {selected ? (
         <Icon active style={styles.iconStyleRemove} name="ios-remove-circle" />
       ) : (
@@ -26,7 +13,7 @@ const SportsOption = props => {
       )}
 
       <Text style={styles.textStyle}>{sport}</Text>
-    </Wrapper>
+    </View>
   );
 };
 
@@ -45,6 +32,16 @@ const styles = {
     textAlign: 'center',
     fontSize: 40,
     color: 'red'
+  },
+  sportsOptionContainer: {
+    justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#738290',
+    height: 100,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 10,
+    marginTop: 20
   }
 };
 export default SportsOption;

@@ -5,12 +5,24 @@ import { Icon } from 'react-native-elements';
 
 import TeamCard from '../components/TeamCard';
 import CreateTeamModal from '../components/CreateTeamModal';
+import Header from '../components/Header';
+import AccountModal from '../components/AccountModal';
 
 const TeamsScreen = props => {
-  const { createTeamModalVisible, onCloseModal, onOpenCreateTeamModal } = props;
+  const {
+    createTeamModalVisible,
+    onCloseModal,
+    onOpenCreateTeamModal,
+    onOpenAccountModal,
+    accountModalVisible,
+    onSignOut,
+    user,
+    navigation
+  } = props;
 
   return (
     <SafeAreaView style={styles.teamsStyle}>
+      <Header onOpenAccountModal={onOpenAccountModal} screenName="Teams" />
       <ScrollView>
         <TeamCard teamname="Team Name" teamlead="Team Lead" />
         {/* <TeamCard teamname="Team Name" teamlead="Team Lead" />
@@ -29,6 +41,15 @@ const TeamsScreen = props => {
         onPress={onOpenCreateTeamModal}
         raised
       />
+      <View style={styles.modalStyles}>
+        <AccountModal
+          modalVisible={accountModalVisible}
+          user={user}
+          navigation={navigation}
+          onCloseModal={onCloseModal}
+          onSignOut={onSignOut}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -42,6 +63,10 @@ const styles = {
     position: 'absolute',
     bottom: 10,
     right: 10
+  },
+  modalStyles: {
+    zIndex: 600,
+    height: 0
   },
   modalStyles: {
     zIndex: 600,

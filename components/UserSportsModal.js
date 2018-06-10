@@ -8,8 +8,10 @@ const UserSportsModal = props => {
     userSportsModalVisible,
     onCloseModal,
     userSports,
-    userSportsValues
+    userSportsValues,
+    userSportsKeys
   } = props;
+  console.log(userSports);
   return (
     <Modal
       animationType="slide"
