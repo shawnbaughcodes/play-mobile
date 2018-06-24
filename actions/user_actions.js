@@ -20,7 +20,6 @@ export const postTextChanged = text => {
 
 export const getUserData = dispatch => {
   const { currentUser } = firebase.auth();
-
   return async dispatch => {
     const storedCurrentUser = await AsyncStorage.getItem('user_id');
     firebase
@@ -35,13 +34,14 @@ export const getUserData = dispatch => {
 export const addSportsData = sport => {
   return async dispatch => {
     const storedCurrentUser = await AsyncStorage.getItem('user_id');
-    firebase
-      .database()
-      .ref(`users/${storedCurrentUser}/userSports`)
-      .push(sport)
-      .then(() => {
-        dispatch({ type: UPDATE_USER_SPORTS_SUCCESS });
-      });
+
+    // firebase
+    //   .database()
+    //   .ref(`users/${storedCurrentUser}/userSports`)
+    //   .push({ sport })
+    //   .then(() => {
+    //     dispatch({ type: UPDATE_USER_SPORTS_SUCCESS });
+    //   });
   };
 };
 
@@ -51,7 +51,7 @@ export const removeSportsData = sport => {
     firebase
       .database()
       .ref(`users/${storedCurrentUser}/userSports`)
-      .remove(sport)
+      .remove({ sport })
       .then(() => {
         dispatch({ type: UPDATE_USER_SPORTS_SUCCESS });
       });
@@ -63,7 +63,7 @@ export const getUserSports = () => {
     const storedCurrentUser = await AsyncStorage.getItem('user_id');
     firebase
       .database()
-      .ref(`/users/${storedCurrentUser}/userSports/`)
+      .ref(`/users/${storedCurrentUser}/`)
       .on('value', snapshot => {
         dispatch({ type: GET_USER_SPORTS_SUCCESS, payload: snapshot.val() });
       });

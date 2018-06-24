@@ -19,70 +19,77 @@ import CreateEventModal from '../components/CreateEventModal';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const HomeScreen = props => {
-  const {
-    createEventModalVisible,
-    post,
-    posts,
-    submitPost,
-    onOpenAccountModal,
-    onOpenEventModal,
-    onCloseModal,
-    accountModalVisible,
-    postModalVisible,
-    user,
-    onSignOut,
-    navigation,
-    onPostTextChange,
-    onOpenCreateEventModal,
-    onOpenEventInfoModal,
-    eventInfoModalVisible
-  } = props;
-  console.log(user);
+class HomeScreen extends Component {
+  componentWillMount = () => {
+    this.props.onGetUserData();
+  };
 
-  return (
-    <SafeAreaView forceInset={{ top: 'always' }} style={styles.safeAreaStyles}>
-      <Header onOpenAccountModal={onOpenAccountModal} screenName="Home" />
-      <ScrollView style={styles.mainScrollStyles}>
-        <View>
-          <Text style={styles.titleStyles}>Your Events</Text>
-          {/* <FlatList horizontal renderItem={() => <EventTile />}> */}
-          <EventTile onOpenEventInfoModal={onOpenEventInfoModal} />
+  render() {
+    const {
+      createEventModalVisible,
+      post,
+      posts,
+      submitPost,
+      onOpenAccountModal,
+      onOpenEventModal,
+      onCloseModal,
+      accountModalVisible,
+      postModalVisible,
+      user,
+      onSignOut,
+      navigation,
+      onPostTextChange,
+      onOpenCreateEventModal,
+      onOpenEventInfoModal,
+      eventInfoModalVisible
+    } = this.props;
+    return (
+      <SafeAreaView
+        forceInset={{ top: 'always' }}
+        style={styles.safeAreaStyles}
+      >
+        <Header onOpenAccountModal={onOpenAccountModal} screenName="Home" />
+        <ScrollView style={styles.mainScrollStyles}>
+          <View>
+            <Text style={styles.titleStyles}>Your Events</Text>
+            {/* <FlatList horizontal renderItem={() => <EventTile />}> */}
+            <EventTile onOpenEventInfoModal={onOpenEventInfoModal} />
+          </View>
+          <View>
+            <Text style={styles.titleStyles}>Events In Your Area</Text>
+            <TouchableOpacity>
+              <EventTile />
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+        <Icon
+          color="#00aced"
+          containerStyle={styles.iconStyles}
+          name="create"
+          onPress={onOpenCreateEventModal}
+          raised
+        />
+        <View style={styles.modalStyles}>
+          <AccountModal
+            modalVisible={accountModalVisible}
+            user={user}
+            navigation={navigation}
+            onCloseModal={onCloseModal}
+            onSignOut={onSignOut}
+          />
+          <EventModal
+            onCloseModal={onCloseModal}
+            eventInfoModalVisible={eventInfoModalVisible}
+          />
+          <CreateEventModal
+            onCloseModal={onCloseModal}
+            createEventModalVisible={createEventModalVisible}
+          />
         </View>
-        <View>
-          <Text style={styles.titleStyles}>Events In Your Area</Text>
-          <TouchableOpacity>
-            <EventTile />
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-      <Icon
-        color="#00aced"
-        containerStyle={styles.iconStyles}
-        name="create"
-        onPress={onOpenCreateEventModal}
-        raised
-      />
-      <View style={styles.modalStyles}>
-        <AccountModal
-          modalVisible={accountModalVisible}
-          user={user}
-          navigation={navigation}
-          onCloseModal={onCloseModal}
-          onSignOut={onSignOut}
-        />
-        <EventModal
-          onCloseModal={onCloseModal}
-          eventInfoModalVisible={eventInfoModalVisible}
-        />
-        <CreateEventModal
-          onCloseModal={onCloseModal}
-          createEventModalVisible={createEventModalVisible}
-        />
-      </View>
-    </SafeAreaView>
-  );
-};
+      </SafeAreaView>
+    );
+  }
+}
 
 const styles = {
   iconStyles: {

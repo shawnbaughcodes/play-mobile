@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text } from 'react-native';
 
 const SportsTitle = props => {
   const { sports, onOpenUserSportsModal } = props;
-  const userSportsCount = Object.keys(sports).length;
+  const userSportsCount = sports === {} ? 0 : Object.keys(sports).length;
   return (
     <View style={styles.wrapperStyles}>
       <Text style={styles.sportsTitleText}>Pick Your Sports</Text>

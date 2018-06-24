@@ -56,6 +56,7 @@ class AuthScreen extends Component {
 
   onRegisterPress = () => {
     const { fname, lname, email, password } = this.props;
+
     this.props.registerUser({ fname, lname, email, password });
     this.onAuthComplete(this.props);
   };

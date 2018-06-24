@@ -4,8 +4,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  sports: [],
-  userSports: []
+  sports: []
 };
 
 export default (state = INITIAL_STATE, action) => {

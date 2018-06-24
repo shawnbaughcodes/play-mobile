@@ -24,10 +24,11 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_FETCH_SUCCESS:
       return {
-        firstName: action.payload.fName,
-        lastName: action.payload.lName,
+        ...state,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
         posts: action.payload.posts,
-        userSports: action.payload.sports,
+        userSports: action.payload.userSports,
         friends: action.payload.friends,
         userTeams: action.payload.userTeams
       };
@@ -35,7 +36,7 @@ export default (state = INITIAL_STATE, action) => {
     case GET_USER_SPORTS_SUCCESS:
       return {
         ...state,
-        userSports: action.payload
+        userSports: action.payload.userSports
       };
 
     case GET_USER_FRIENDS_SUCCESS:

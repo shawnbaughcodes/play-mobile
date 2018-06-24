@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onGetUserData: () => dispatch(actions.getUserData()),
   onGetAllPosts: () => dispatch(actions.getAllPosts()),
   onSubmitPost: () => dispatch(actions.submitPost()),
   onPostTextChanged: text => dispatch(actions.postTextChanged(text)),

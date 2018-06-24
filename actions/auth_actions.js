@@ -58,7 +58,14 @@ const registerUserSuccess = async (dispatch, user, userInfo) => {
   firebase
     .database()
     .ref(`users/${currentUser.uid}/`)
-    .set({ firstName: fname, lastName: lname });
+    .set({
+      firstName: fname,
+      lastName: lname,
+      posts: {},
+      friends: {},
+      userSports: {},
+      userTeams: {}
+    });
 
   await AsyncStorage.setItem('user_id', currentUser.uid);
   await AsyncStorage.setItem('user_fName', fname);

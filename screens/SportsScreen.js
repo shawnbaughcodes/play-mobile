@@ -11,13 +11,13 @@ import UserSportsModal from '../components/UserSportsModal';
 class SportsScreen extends Component {
   componentWillMount() {
     this.props.onGetAllSports();
-    this.props.onGetUserSports();
+    // this.props.onGetUserSports();
   }
-
+  renderAddSportButton = () => {};
+  renderRemoveSportButton = () => {};
   render() {
     const {
       sports,
-      userSports,
       onUpdateUserSports,
       onRemoveUserSport,
       accountModalVisible,
@@ -29,32 +29,31 @@ class SportsScreen extends Component {
       userSportsModalVisible,
       onOpenUserSportsModal
     } = this.props;
+    console.log(this.props);
 
     const userSportsValues =
-      userSports === null ? [] : Object.values(userSports);
-    const userSportsKeys = userSports === null ? [] : Object.keys(userSports);
+      user.userSports === null ? [] : Object.values(user.userSports);
+    const userSportsKeys =
+      user.userSports === null ? [] : Object.keys(user.userSports);
+    const userSportsIndex = sports.map(sport => sport.sport);
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <Header onOpenAccountModal={onOpenAccountModal} screenName="Sports" />
         <SportsTitle
-          sports={userSports !== null && userSports}
+          sports={user.userSports !== null && user.userSports}
           onOpenUserSportsModal={onOpenUserSportsModal}
         />
         <ScrollView>
           {sports.map(sport => (
             <TouchableOpacity
-              key={sport}
-              onPress={
-                userSportsValues.includes(sport)
-                  ? () => onRemoveUserSport(sport)
-                  : () => onUpdateUserSports(sport)
-              }
+              key={sport.name}
+              onPress={() => onUpdateUserSports(sport.name)}
             >
               <SportsOption
-                key={sport}
-                sport={sport}
-                selected={userSportsValues.includes(sport)}
+                key={sport.name}
+                sport={sport.name}
+                selected={userSportsIndex.includes(sport.name)}
               />
             </TouchableOpacity>
           ))}
@@ -70,7 +69,7 @@ class SportsScreen extends Component {
           <UserSportsModal
             userSportsModalVisible={userSportsModalVisible}
             onCloseModal={onCloseModal}
-            userSports={userSports}
+            userSports={user.userSports}
             userSportsValues={userSportsValues}
             userSportsKeys={userSportsKeys}
           />
